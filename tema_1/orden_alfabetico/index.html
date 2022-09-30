@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de palabras en orden alfabético</title>
+</head>
+<body>
+<p>Realiza un programa el cual reciba un texto determinado y muestre una lista de las palabras introducidas de forma
+    alfabética junto con el número de veces que aparece esa palabra. <br>
+    Se obviará todo lo que no sea una palabra como puntos, comas, etc.</p>
+<br>
+<p>Hola, buenos días. Hola, buenas tardes. Hola, buenas noches.</p>
+<p id="txt"></p><br>
+<p><strong>*Hola aparece antes, porque en ascii las mayúsculas aparecen antes que las minúsculas</strong></p>
+
+<script>
+    function ordenarPalabras (txt) {
+        let split = txt.replace(/[.,]/g,"").split(" ").sort();
+        let aux = {};
+        for (let x = 0; x < split.length; x++) {
+            if (aux[split[x]] === undefined) {
+                aux[split[x]] = 1;
+            } else {
+                aux[split[x]]++;
+            }
+        }
+        let res = "";
+        for (let key in aux) {
+            res += key + ": " + aux[key] + "<br>";
+        }
+        return res;
+    }
+
+    let txt = "Hola, buenos días. Hola, buenas tardes. Hola, buenas noches."
+    document.getElementById("txt").innerHTML += ordenarPalabras(txt);
+</script>
+</body>
+</html>

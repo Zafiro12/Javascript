@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+<img src="/images/image_1.jpg" alt="image" id="image">
+<script>
+    let image = document.getElementById("image");
+    let images = ["images/image_1.jpg", "images/image_2.jpg", "images/image_3.jpg", "images/image_4.jpg"];
+    let i = 0;
+    image.addEventListener("click", function () {
+        i = i + 1;
+        if (i > 3) {
+            i = 0;
+        }
+        image.src = images[i];
+    });
+</script>
+</body>
+</html>

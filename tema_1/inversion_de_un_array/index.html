@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inversión de un array</title>
+</head>
+<body>
+<p>Realiza un programa al que se le introduzca un texto y devuelva el mismo texto pero con las letras invertidas. Por
+    ejemplo la entrada:<br><br>
+
+    Buenos días hoy es lunes <br>
+    Daría la salida:<br>
+    soneuB saíd yoh se senul<br><br>
+
+
+    truco: prueba el siguiente código...<br>
+    let text = "Hello world!";<br>
+    let result = text.substring(1, 4);<br>
+
+    substring() extrae parte de un string.</p>
+<p>Hola, buenos días</p>
+<p id="txt"></p>
+<script>
+    function inversion (texto) {
+        return texto.split("").reverse().join("");
+    }
+
+    document.getElementById("txt").innerHTML += inversion("Hola, buenos días");
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Suma recursiva de un array</title>
+</head>
+<body>
+<p>Escriba una función recursiva que calcule y devuelva la suma de todos los elementos de una matriz, donde la matriz y
+    su tamaño se dan como parámetros. <br>
+    Ejemplo de llamada: <br>
+    sumatorio (array, tamaño)</p>
+<p id="txt"></p>
+<script>
+    function sumaRecursiva(arr) {
+        if (arr.length === 0){return 0}
+        return arr.pop() + sumaRecursiva(arr);
+    }
+
+    let arr = [1,3,7,1,4]
+    document.getElementById("txt").innerHTML += sumaRecursiva(arr);
+</script>
+</body>
+</html>

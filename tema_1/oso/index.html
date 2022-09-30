@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Oso</title>
+  </head>
+  <body>
+    <p>Realiza un programa que:</p>
+    <ul>
+      <li>
+        Dado una matriz la rellene con O’s y con S’s teniendo en cuenta que el
+        número de O’s debería ser el doble que de S’s aproximadamente.
+      </li>
+
+      <li>
+        Realiza la función solitario() que vaya resolviendo el juego. Solamente
+        jugará la máquina.
+      </li>
+
+      <li>Muestra por consola la matriz inicial y la matriz resuelta.</li>
+    </ul>
+    <p id="tablero"></p>
+    <hr>
+    <p id="solitario"></p>
+    <script>
+        function mostrarMatriz(matriz) {
+            let texto = "";
+            for (let i = 0; i < matriz.length; i++) {
+                for (let j = 0; j < matriz[i].length; j++) {
+                    texto += matriz[i][j] + " ";
+                }
+                texto += "<br>";
+            }
+            return texto;
+        }
+
+        function crearTablero(size) {
+            let tablero = [];
+            let o = 0;
+            let s = 0;
+            for (let i = 0; i < size; i++) {
+                tablero[i] = [];
+                for (let j = 0; j < size; j++) {
+                    let random = Math.floor(Math.random() * 2);
+                    if (random == 0) {
+                        tablero[i][j] = "O";
+                        o++;
+                    } else {
+                        tablero[i][j] = "S";
+                        s++;
+                    }
+                }
+            }
+            if (o > s * 2) {
+                for (let i = 0; i < size; i++) {
+                    for (let j = 0; j < size; j++) {
+                        if (tablero[i][j] == "O") {
+                            tablero[i][j] = "S";
+                            o--;
+                            s++;
+                            if (o <= s * 2) {
+                                return tablero;
+                            }
+                        }
+                    }
+                }
+            } else if (o < s * 2) {
+                for (let i = 0; i < size; i++) {
+                    for (let j = 0; j < size; j++) {
+                        if (tablero[i][j] == "S") {
+                            tablero[i][j] = "O";
+                            o++;
+                            s--;
+                            if (o >= s * 2) {
+                                return tablero;
+                            }
+                        }
+                    }
+                }
+            } else {
+                return tablero;
+            }
+        }
+
+        function contarOSO(tablero) {
+            let contador = 0;
+            for (let i = 0; i < tablero.length; i++) {
+                for (let j = 0; j < tablero[i].length; j++) {
+                    if (tablero[i][j] == "O") {
+                        if (tablero[i][j + 1] == "S" && tablero[i][j + 2] == "O") {
+                            contador++;
+                        }
+                        if (tablero[i][j - 1] == "S" && tablero[i][j - 2] == "O") {
+                            contador++;
+                        }
+                        if (tablero[i + 1] && tablero[i + 1][j] == "S" && tablero[i + 2] && tablero[i + 2][j] == "O") {
+                            contador++;
+                        }
+                        if (tablero[i - 1] && tablero[i - 1][j] == "S" && tablero[i - 2] && tablero[i - 2][j] == "O") {
+                            contador++;
+                        }
+                    }
+                }
+            }
+            return contador;
+        }
+
+        let tablero = crearTablero(10);
+        document.getElementById("tablero").innerHTML = mostrarMatriz(tablero);
+        document.getElementById("solitario").innerHTML = "Numero de OSO: " + contarOSO(tablero);
+    </script>
+  </body>
+</html>

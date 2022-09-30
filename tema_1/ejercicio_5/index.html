@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 5</title>
+</head>
+<body>
+<p id="parrafo" style="color: blue">Bienvenido</p>
+<button id="boton1">Ruso</button>
+<button id="boton2">Español</button>
+<button id="boton3">Inglés</button>
+<script>
+    document.getElementById("boton1").addEventListener("click", function () {
+        document.getElementById("parrafo").innerHTML = "Добро пожаловать";
+        document.getElementById("parrafo").style.color = "red";
+    });
+    document.getElementById("boton2").addEventListener("click", function () {
+        document.getElementById("parrafo").innerHTML = "Bienvenido";
+        document.getElementById("parrafo").style.color = "blue";
+    });
+    document.getElementById("boton3").addEventListener("click", function () {
+        document.getElementById("parrafo").innerHTML = "Welcome";
+        document.getElementById("parrafo").style.color = "green";
+    });
+</script>
+</body>
+</html>

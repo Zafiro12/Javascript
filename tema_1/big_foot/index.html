@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>BIG FOOT</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<p id="txt">
+    Pie Grande (del inglés Bigfoot) o Sasquatch (según el nombre que le
+    dan los pueblos indígenas
+    originarios de Norteamérica —que procede de la adaptación al inglés
+    de la palabra original
+    del idioma halkomelem sásq'ets) es una criatura legendaria con el
+    aspecto de un primate
+    perteneciente a la familia de los homínidos, que suele verse en
+    bosques a elevadas altitudes,
+    principalmente en la región del noroeste del Pacífico en América del
+    Norte.
+
+    <br><br>
+    Crea un programa con una función recursiva que diga cual es la
+    secuencia de Big foot's (sin la big) más largas para un array dado
+    Por ejemplo: <br><br>
+    foot -> tamaño 4<br>
+    foooot -> tamaño 6<br>
+    foooooot -> tamaño 8<br>
+<p>
+    <script>
+        let arr = ["O", "F", "O", "O", "S", "T", "O", "F", "O", "O", "O", "T", "O", "F", "O", "O", "O", "O", "O", "T"];
+        function foot(arr, ini, fin, size) {
+            if (fin === arr.length) {
+                return size;
+            }
+
+            let cont = 0;
+
+            if (arr[ini] === "F") {
+                if (arr[fin] === "T") {
+                    console.log(arr.slice(ini, fin+1));
+                    let aux = arr.slice(ini + 1, fin);
+                    console.log(aux);
+                    cont = cont + 2;
+                    for (let i = 0; i<arr.length; i++) {
+                        if (aux[i] !== "O") {
+                            return foot(arr, ini + 1, fin + 1, size);
+                        } else{
+                            cont++;
+                            if (cont > size) {
+                                size = cont;
+                            }
+                        }
+                    }
+                } else {
+                    return foot(arr, ini, fin + 1, size);
+                }
+            } else {
+                return foot(arr, ini + 1, fin + 1, size);
+            }
+            return size;
+        }
+
+        document.getElementById("txt").innerHTML += "El foot mas largo es: " + foot(arr, 0, 0, 0);
+
+    </script>
+</body>
+</html>
