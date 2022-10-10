@@ -25,7 +25,18 @@
     <hr>
     <p id="solitario"></p>
     <script>
-        function mostrarMatriz(matriz) {
+        const crearMatriz = (filas, columnas) => {
+            let matriz = [];
+            for (let i = 0; i < filas; i++) {
+                matriz[i] = [];
+                for (let j = 0; j < columnas; j++) {
+                    matriz[i][j] = "O";
+                }
+            }
+            return matriz;
+        }
+
+        const mostrarMatriz = (matriz) => {
             let texto = "";
             for (let i = 0; i < matriz.length; i++) {
                 for (let j = 0; j < matriz[i].length; j++) {
@@ -36,80 +47,64 @@
             return texto;
         }
 
-        function crearTablero(size) {
-            let tablero = [];
-            let o = 0;
-            let s = 0;
-            for (let i = 0; i < size; i++) {
-                tablero[i] = [];
-                for (let j = 0; j < size; j++) {
-                    let random = Math.floor(Math.random() * 2);
-                    if (random == 0) {
-                        tablero[i][j] = "O";
-                        o++;
-                    } else {
-                        tablero[i][j] = "S";
-                        s++;
-                    }
-                }
-            }
-            if (o > s * 2) {
-                for (let i = 0; i < size; i++) {
-                    for (let j = 0; j < size; j++) {
-                        if (tablero[i][j] == "O") {
-                            tablero[i][j] = "S";
-                            o--;
-                            s++;
-                            if (o <= s * 2) {
-                                return tablero;
-                            }
-                        }
-                    }
-                }
-            } else if (o < s * 2) {
-                for (let i = 0; i < size; i++) {
-                    for (let j = 0; j < size; j++) {
-                        if (tablero[i][j] == "S") {
-                            tablero[i][j] = "O";
-                            o++;
-                            s--;
-                            if (o >= s * 2) {
-                                return tablero;
-                            }
-                        }
-                    }
-                }
-            } else {
-                return tablero;
-            }
-        }
-
-        function contarOSO(tablero) {
+        const rellenarMatriz = (matriz) => {
             let contador = 0;
-            for (let i = 0; i < tablero.length; i++) {
-                for (let j = 0; j < tablero[i].length; j++) {
-                    if (tablero[i][j] == "O") {
-                        if (tablero[i][j + 1] == "S" && tablero[i][j + 2] == "O") {
-                            contador++;
+            let filas = matriz.length;
+            let columnas = matriz[0].length;
+            let total = filas * columnas;
+            let mitad = total / 2;
+            while (contador < mitad) {
+                let fila = Math.floor(Math.random() * filas);
+                let columna = Math.floor(Math.random() * columnas);
+                if (matriz[fila][columna] === "O") {
+                    matriz[fila][columna] = "S";
+                    contador++;
+                }
+            }
+            return matriz;
+        }
+
+        var matriz = crearMatriz(5, 5);
+        matriz = rellenarMatriz(matriz);
+
+        document.getElementById("tablero").innerHTML = mostrarMatriz(matriz);
+
+        const solitario = (matriz) => {
+            let numeroDeOSOS = 0;
+
+            for (let i = 0; i < matriz.length; i++) {
+                for (let j = 0; j < matriz[i].length; j++) {
+                    const letra = matriz[i][j];
+                    if (letra === "O" && ) {
+                        if (matriz[i][j + 1] === "S" && matriz[i][j + 2] === "O") {
+                            matriz[i][j + 2] = "*"
+                            matriz[i][j + 1] = "*";
+                            numeroDeOSOS++;
+                        } else if (matriz[i][j - 1] === "S" && matriz[i][j - 2] === "O") {
+                            matriz[i][j - 2] = "*"
+                            matriz[i][j - 1] = "*";
+                            numeroDeOSOS++;
+                        } else if (matriz[i + 1][j] === "S" && matriz[i + 2][j] === "O") {
+                            matriz[i + 2][j] = "*"
+                            matriz[i + 1][j] = "*";
+                            numeroDeOSOS++;
+                        } else if (matriz[i - 1][j] === "S" && matriz[i - 2][j] === "O") {
+                            matriz[i - 2][j] = "*"
+                            matriz[i - 1][j] = "*";
+                            numeroDeOSOS++;
                         }
-                        if (tablero[i][j - 1] == "S" && tablero[i][j - 2] == "O") {
-                            contador++;
-                        }
-                        if (tablero[i + 1] && tablero[i + 1][j] == "S" && tablero[i + 2] && tablero[i + 2][j] == "O") {
-                            contador++;
-                        }
-                        if (tablero[i - 1] && tablero[i - 1][j] == "S" && tablero[i - 2] && tablero[i - 2][j] == "O") {
-                            contador++;
-                        }
+                        matriz[i][j] = "*";
+                    } else {
+                        continue;
                     }
                 }
             }
-            return contador;
+            console.log(numeroDeOSOS);
+            return matriz;
         }
+        matriz = solitario(matriz);
+        document.getElementById("solitario").innerHTML = mostrarMatriz(matriz);
 
-        let tablero = crearTablero(10);
-        document.getElementById("tablero").innerHTML = mostrarMatriz(tablero);
-        document.getElementById("solitario").innerHTML = "Numero de OSO: " + contarOSO(tablero);
     </script>
   </body>
 </html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Examen</title>
+  </head>
+  <body>
+    <ol>
+      <li>
+        Si te doy un array tal que así: let numeros =
+        [1,[2,3,4],[8,15,[5,1]],27]; ¿Me sabrías decir cuantas veces aparece el
+        número 1?. Ojo, no vale Console.log(2);
+      </li>
+      <li>
+        En el mismo array podrías decirme cual sería la suma de todos los
+        elementos.
+      </li>
+      <li>Me podrías decir si existe o no el número 45. ¿Y el 27?</li>
+      <li>
+        Si te doy un array ordenado de palabras ¿ me podrías decir si contiene
+        la palabra "Carratraca" ? Ojo, pero si utilizar for ni foreach ni
+        recorrer secuencialmente el array.
+      </li>
+      <li>
+        Sabrías decirme cual es el elemento central de un array (par o impar de
+        elementos).
+      </li>
+    </ol>
+    <p id="txt"></p>
+    <script>
+      let numeros = [1, [2, 3, 4], [8, 15, [5, 1]], 27];
+      let palabras = [
+        "Carratraca",
+        "hola",
+        ["jajaja", "Carratraca", "adios"],
+        "adios",
+      ];
+
+      const buscadorRecursivo = (array, n, i = 0) => {
+        let contador = 0;
+        if (array[i] === n) {
+          contador++;
+        } else if (Array.isArray(array[i])) {
+          contador += buscadorRecursivo(array[i], n);
+        }
+        if (i < array.length - 1) {
+          contador += buscadorRecursivo(array, n, i + 1);
+        }
+        return contador;
+      };
+
+      const sumadorRecursivo = (numeros, i = 0) => {
+        let suma = 0;
+        if (Array.isArray(numeros[i])) {
+          suma += sumadorRecursivo(numeros[i]);
+        } else {
+          suma += numeros[i];
+        }
+        if (i < numeros.length - 1) {
+          suma += sumadorRecursivo(numeros, i + 1);
+        }
+        return suma;
+      };
+
+      const elementoCentral = (array) => {
+        let central = 0;
+        if (array.length % 2 === 0) {
+          central = array[array.length / 2 - 1];
+        } else {
+          central = array[Math.floor(array.length / 2)];
+        }
+        return central;
+      };
+
+      document.getElementById("txt").innerHTML +=
+        buscadorRecursivo(numeros, 1) + " veces aparece el número 1<br>";
+      document.getElementById("txt").innerHTML +=
+        "Suma del array anterior " + sumadorRecursivo(numeros) + "<br>";
+      document.getElementById("txt").innerHTML +=
+        buscadorRecursivo(numeros, 45) + " veces aparece el número 45<br>";
+      document.getElementById("txt").innerHTML +=
+        buscadorRecursivo(numeros, 27) + " veces aparece el número 27<br>";
+      document.getElementById("txt").innerHTML +=
+        buscadorRecursivo(palabras, "Carratraca") +
+        " veces aparece la palabra Carratraca<br>";
+      document.getElementById("txt").innerHTML +=
+        "Elemento central del array palabras: " + elementoCentral(palabras);
+
+      console.log(buscadorEficiente(numeros, 8));
+    </script>
+  </body>
+</html>
