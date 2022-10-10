@@ -38,6 +38,8 @@
         "adios",
       ];
 
+      let nombres = ["Ana", "Berta", "Carmen", "Dolores", "Eva"];
+
       const buscadorRecursivo = (array, n, i = 0) => {
         let contador = 0;
         if (array[i] === n) {
@@ -74,6 +76,19 @@
         return central;
       };
 
+      const busquedaBinaria = (array, palabra, i = 0, j = array.length - 1) => {
+        let central = Math.floor((i + j) / 2);
+        if (array[central] === palabra) {
+          return central;
+        } else if (array[central] > palabra) {
+          return busquedaBinaria(array, palabra, i, central - 1);
+        } else if (array[central] < palabra) {
+          return busquedaBinaria(array, palabra, central + 1, j);
+        } else {
+          return central;
+        }
+      };
+
       document.getElementById("txt").innerHTML +=
         buscadorRecursivo(numeros, 1) + " veces aparece el número 1<br>";
       document.getElementById("txt").innerHTML +=
@@ -86,9 +101,10 @@
         buscadorRecursivo(palabras, "Carratraca") +
         " veces aparece la palabra Carratraca<br>";
       document.getElementById("txt").innerHTML +=
-        "Elemento central del array palabras: " + elementoCentral(palabras);
+        "Elemento central del array palabras: " + elementoCentral(palabras) + "<br>";
 
-      console.log(buscadorEficiente(numeros, 8));
+      document.getElementById("txt").innerHTML +=
+        "Posicion de Dolores en el array de nombres: " + busquedaBinaria(nombres, "Dolores");
     </script>
   </body>
 </html>
