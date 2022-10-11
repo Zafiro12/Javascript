@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buscador</title>
+  </head>
+  <body>
+    <span id="txt"></span><br />
+    <input type="text" id="input" /><button onclick="buscar()">Search</button>
+    <script>
+      var text = document.getElementById("txt");
+      var input = document.getElementById("input");
+
+      let codigosPostales = [
+        { 29692: "Sabinillas" },
+        { 29693: "La Cala del Moral" },
+        { 29694: "La Cala de Mijas" },
+        { 29695: "Mijas Costa" },
+        { 29680: "Marbella" },
+        { 29720: "Vélez-Málaga" },
+        { 29730: "Rincón de la Victoria" },
+        { 29740: "Torre del Mar" },
+        { 29750: "Villanueva de la Concepción" },
+        { 29760: "Periana" },
+        { 29770: "Algarrobo" },
+        { 29780: "Torrox" },
+        { 29791: "Riogordo" },
+        { 29792: "Cómpeta" },
+        { 29793: "Sayalonga" },
+        { 29794: "Alcaucín" },
+        { 29795: "Canillas de Aceituno" },
+        { 29796: "Benamargosa" },
+        { 29797: "Cútar" },
+        { 29798: "Cortes de la Frontera" },
+        { 29799: "Pizarra" },
+        { 29800: "Ronda" },
+        { 29810: "Alpandeire" },
+        { 29820: "Júzcar" },
+        { 29830: "Igualeja" },
+        { 29840: "Cartajima" },
+        { 29850: "Almargen" },
+        { 29860: "Alpandeire" },
+        { 29870: "Almogía" },
+        { 29880: "Alpandeire" },
+        { 29001: "Málaga" }
+      ];
+
+      function buscar() {
+        let codigo = input.value;
+        let encontrado = false;
+        for (let i = 0; i < codigosPostales.length; i++) {
+          if (codigosPostales[i].hasOwnProperty(codigo)) {
+            text.innerHTML = codigosPostales[i][codigo];
+            encontrado = true;
+          }
+        }
+        if (!encontrado) {
+          text.innerHTML = "No encontrado";
+        }
+      }
+    </script>
+  </body>
+</html>
