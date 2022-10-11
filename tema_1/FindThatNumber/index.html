@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find that Number</title>
+</head>
+<body>
+    <script>
+        let numeros = [1,2,3,4,8,15,5,1,27]
+        numeros = numeros.sort(function(a,b) {
+            return a-b;
+        });
+
+        console.log(numeros);
+
+        const buscaNumeros = (numero, arr, i = 0, j = arr.length - 1) => {
+            let centro = Math.floor(j - i / 2);
+
+            if (numero < arr[i] || numero > arr[j]) {
+                return 0;
+            }
+
+            if (numero === arr[centro]) {
+                return 1;
+            } else if (numero < arr[centro]) {
+                return buscaNumeros(numero, arr, i, centro - 1);
+            } else if (numero > arr[centro]) {
+                return buscaNumeros(numero, arr, centro + 1, j);
+            }
+        }
+        
+        console.log(buscaNumeros(3,numeros));
+    </script>
+</body>
+</html>
