@@ -47,17 +47,41 @@
         { 29001: "Málaga" }
       ];
 
-      function buscar() {
-        let codigo = input.value;
+function buscarCP() {
+        let cp = input.value;
         let encontrado = false;
         for (let i = 0; i < codigosPostales.length; i++) {
-          if (codigosPostales[i].hasOwnProperty(codigo)) {
-            text.innerHTML = codigosPostales[i][codigo];
+          if (codigosPostales[i][cp]) {
+            text.innerHTML = codigosPostales[i][cp];
             encontrado = true;
           }
         }
         if (!encontrado) {
           text.innerHTML = "No encontrado";
+        }
+        return encontrado;
+      }
+
+function buscarPoblacion() {
+        let poblacion = input.value;
+        let encontrado = false;
+        for (let i = 0; i < codigosPostales.length; i++) {
+          if (codigosPostales[i][Object.keys(codigosPostales[i])] == poblacion) {
+            text.innerHTML = Object.keys(codigosPostales[i]);
+            encontrado = true;
+          }
+        }
+        if (!encontrado) {
+          text.innerHTML = "No encontrado";
+        }
+        return encontrado;
+      }
+
+      function buscar() {
+        if (isNaN(input.value)) {
+          buscarPoblacion();
+        } else {
+          buscarCP();
         }
       }
     </script>
