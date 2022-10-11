@@ -1,48 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cronometro</title>
-</head>
-<body>
-    <div>
-        <span id="crono">0:0:0</span>
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+      "
+    >
+      <span id="crono">0:0:0:0</span>
+      <div>
         <button value="iniciar" onclick="iniciar()">Iniciar</button>
         <button value="parar" onclick="parar()">Parar</button>
         <button value="reiniciar" onclick="reiniciar()">Reiniciar</button>
+      </div>
     </div>
     <script>
-        var crono = document.getElementById("crono");
-        var segundos = 0;
-        var minutos = 0;
-        var horas = 0;
-        var intervalo;
-        function iniciar(){
-            intervalo = setInterval(function(){
-                segundos++;
-                if(segundos == 60){
-                    segundos = 0;
-                    minutos++;
-                    if(minutos == 60){
-                        minutos = 0;
-                        horas++;
-                    }
-                }
-                crono.innerHTML = horas + ":" + minutos + ":" + segundos;
-            }, 1000);
-        }
-        function parar(){
-            clearInterval(intervalo);
-        }
-        function reiniciar(){
-            clearInterval(intervalo);
+      var crono = document.getElementById("crono");
+      var milisegundos = 0;
+      var segundos = 0;
+      var minutos = 0;
+      var horas = 0;
+      var intervalo;
+      function iniciar() {
+        intervalo = setInterval(function () {
+          milisegundos++;
+          if (milisegundos == 100) {
+            milisegundos = 0;
+            segundos++;
+          }
+          if (segundos == 60) {
             segundos = 0;
+            minutos++;
+          }
+          if (minutos == 60) {
             minutos = 0;
-            horas = 0;
-            crono.innerHTML = horas + ":" + minutos + ":" + segundos;
-        }
+            horas++;
+          }
+          crono.innerHTML =
+            horas + ":" + minutos + ":" + segundos + ":" + milisegundos;
+        }, 10);
+      }
+      function parar() {
+        clearInterval(intervalo);
+      }
+      function reiniciar() {
+        clearInterval(intervalo);
+        milisegundos = 0;
+        segundos = 0;
+        minutos = 0;
+        horas = 0;
+        crono.innerHTML =
+          horas + ":" + minutos + ":" + segundos + ":" + milisegundos;
+      }
     </script>
-</body>
+  </body>
 </html>
