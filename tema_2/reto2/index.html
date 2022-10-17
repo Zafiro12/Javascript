@@ -19,9 +19,11 @@
     console.log(carrakos.filter((item) => !cars.includes(item)));
 
     cars = ["Saab", "Volvo", "BMW", ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"]];
-    let buddies = [{firstName: "Chuck", lastName: "Norris", car: "Honda"}, {firstName: "Yakie", lastName: "Chang", car: "BMV"},
+    let buddies = [{firstName: "Chuck", lastName: "Norris", car: "Honda"}, {firstName: "Yakie", lastName: "Chang", car: "BMW"},
         {firstName: "Bruce", lastName: "Lee", car: "Honda"}, {firstName: "Steven", lastName: "Seagal", car: "Lada"}];
     console.table(buddies);
+    cars = cars.flat(Infinity);
+    console.log(cars);
 
     //-Nombre y apellidos de los buddies que usan un Honda
     console.log(buddies.filter((item) => item.car === "Honda").map((item) => item.firstName + " " + item.lastName));
