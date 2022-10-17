@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Buscador</title>
-  </head>
-  <body>
-    <span id="txt"></span><br />
-    <input type="text" id="input" /><button onclick="buscar()">Search</button>
-    <script>
-      var text = document.getElementById("txt");
-      var input = document.getElementById("input");
+</head>
+<body>
+<span id="txt"></span><br />
+<input type="text" id="input" /><button onclick="buscar()">Search</button>
+<script>
+    var text = document.getElementById("txt");
+    var input = document.getElementById("input");
 
-      let codigosPostales = [
+    let codigosPostales = [
         { 29692: "Sabinillas" },
         { 29693: "La Cala del Moral" },
         { 29694: "La Cala de Mijas" },
@@ -45,45 +45,23 @@
         { 29870: "Almogía" },
         { 29880: "Alpandeire" },
         { 29001: "Málaga" }
-      ];
+    ];
 
-function buscarCP() {
-        let cp = input.value;
-        let encontrado = false;
-        for (let i = 0; i < codigosPostales.length; i++) {
-          if (codigosPostales[i][cp]) {
-            text.innerHTML = codigosPostales[i][cp];
-            encontrado = true;
-          }
-        }
-        if (!encontrado) {
-          text.innerHTML = "No encontrado";
-        }
-        return encontrado;
-      }
+    /*function buscar() {
+        codigosPostales.map((item) => {
+            if (item[Object.keys(item)[0]].toLowerCase() === input.value.toLowerCase() || Object.keys(item)[0] === input.value) {
+                text.innerHTML = `Codigo postal: ${Object.keys(item)[0]}<br />Localidad: ${item[Object.keys(item)[0]]}`;
+            }
+        });
+    }*/
 
-function buscarPoblacion() {
-        let poblacion = input.value;
-        let encontrado = false;
-        for (let i = 0; i < codigosPostales.length; i++) {
-          if (codigosPostales[i][Object.keys(codigosPostales[i])] == poblacion) {
-            text.innerHTML = Object.keys(codigosPostales[i]);
-            encontrado = true;
-          }
-        }
-        if (!encontrado) {
-          text.innerHTML = "No encontrado";
-        }
-        return encontrado;
-      }
-
-      function buscar() {
-        if (isNaN(input.value)) {
-          buscarPoblacion();
-        } else {
-          buscarCP();
-        }
-      }
-    </script>
-  </body>
+    function buscar() {
+        codigosPostales.find((item) => {
+            if (item[Object.keys(item)[0]].toLowerCase() === input.value.toLowerCase() || Object.keys(item)[0] === input.value) {
+                text.innerHTML = `Codigo postal: ${Object.keys(item)[0]}<br />Localidad: ${item[Object.keys(item)[0]]}`;
+            }
+        });
+    }
+</script>
+</body>
 </html>

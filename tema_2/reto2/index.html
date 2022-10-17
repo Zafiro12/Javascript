@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h1>retos JavaScript</h1>
+<script>
+    let cars = ["Saab", "Volvo", "BMW", ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"]];
+    let carrakos = ["Chevrolet", "Tesla", "BMW", ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"],
+        ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]]];
+    //Alguien sabe hacer una lista única de coches con los dos arrays (sin repeticiones)?
+    cars = cars.flat(Infinity);
+    carrakos = carrakos.flat(Infinity);
+    console.log(cars.concat(carrakos).filter((item, index, array) => array.indexOf(item) === index));
+
+    //Alguien sabría decirme los coches de carrakos que no estén en cars?
+    console.log(carrakos.filter((item) => !cars.includes(item)));
+
+    cars = ["Saab", "Volvo", "BMW", ["Honda", "Toyota", ["Lexus", "Mercedes", "Lada"], "Hyunday"]];
+    let buddies = [{firstName: "Chuck", lastName: "Norris", car: "Honda"}, {firstName: "Yakie", lastName: "Chang", car: "BMV"},
+        {firstName: "Bruce", lastName: "Lee", car: "Honda"}, {firstName: "Steven", lastName: "Seagal", car: "Lada"}];
+    console.table(buddies);
+
+    //-Nombre y apellidos de los buddies que usan un Honda
+    console.log(buddies.filter((item) => item.car === "Honda").map((item) => item.firstName + " " + item.lastName));
+
+    //-Marcas utilizadas por los buddies
+    console.log(buddies.map((item) => item.car).filter((item, index, array) => array.indexOf(item) === index));
+
+    //-Marcas no utilizadas por los buddies.
+    console.log(cars.filter((item) => !buddies.map((item) => item.car).includes(item)));
+
+    //-Cuantas marcas han sido utilizadas
+    console.log(buddies.map((item) => item.car).filter((item, index, array) => array.indexOf(item) === index).length);
+
+    //-Cuantas marcas no han sido utilizadas
+    console.log(cars.filter((item) => !buddies.map((item) => item.car).includes(item)).length);
+</script>
+</body>
+</html>
