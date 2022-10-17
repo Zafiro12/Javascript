@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<h1>Reto III</h1>
+<p>Se pide la suma y la media de las notas de DWEC en tres líneas.</p>
+<script>
+    let alumnos = {
+        "alumnos": [{
+            "nombre": "Fulanito",
+            "notas": {
+                "DWEC": 8,
+                "DWESE": 0.71,
+                "ED": 7.04,
+                "SSOO": 3.37,
+                "BBDD": 0.22,
+                "PROG": 1.09,
+                "EINEM": 6.17
+            }
+        },
+            {
+                "nombre": "Menganito",
+                "notas": {
+                    "DWEC": 7,
+                    "DWESE": 0.71,
+                    "ED": 7.04,
+                    "SSOO": 3.37,
+                    "BBDD": 0.22,
+                    "PROG": 1.09,
+                    "EINEM": 6.17
+                }
+            }
+            ,
+            {
+                "nombre": "Cetanito",
+                "notas": {
+                    "DWEC": 6,
+                    "DWESE": 0.71,
+                    "ED": 7.04,
+                    "SSOO": 3.37,
+                    "BBDD": 0.22,
+                    "PROG": 1.09,
+                    "EINEM": 6.17
+                }
+            }
+        ]
+    };
+
+    let notaMedia = 0;
+    alumnos.alumnos.map((item) => notaMedia += item.notas.DWEC);
+    console.log(notaMedia/alumnos.alumnos.length);
+</script>
+</body>
+</html>
