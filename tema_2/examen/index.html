@@ -29,10 +29,13 @@
     //EJERCICIO 2
     /*Ver si una marca es trendy. Una marca es trendy si esta es utilizada por más de
     un buddy. Crea en este mismo ejercicio un array trendy con dichas marcas. Muestra el array
-    trendy por consola. Se pide que lo realices en 3-4 líneas de código*/
+    trendy por consola. Se pide que lo realices en 3-4 líneas de código. Decir cuantas veces se repite cada uno*/
     console.table(buddies); // Para mejor visualización
-    let trendy = buddies.map((item) => {return item.car}).filter((item, index, array) => {return array.indexOf(item) !== index}).filter((item, index, array) => {return index === array.indexOf(item)});
-    console.log(trendy);
+    let trendy = buddies.map((item) => item.car).filter((item, index, array) => array.indexOf(item) !== index);
+    console.log(trendy.reduce((acc, item) => {
+        acc[item] = (acc[item] || 1) + 1;
+        return acc;
+    },{}));
 
     //EJERCICIO 3
     /*Muestra por consola las marcas del array newcars que usen los buddies, que
