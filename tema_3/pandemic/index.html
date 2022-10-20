@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>PANDEMIC</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .paciente0 {
+            background-color: red;
+        }
+        .infectado {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <p id="txt"><p>
+<script>
+    const texto = document.getElementById("txt");
+
+    function matriz(filas, columnas) {
+        let array = [["<table>"]];
+        let letras = ["H", "M", "P", "G", "R"]
+        for (let i = 0; i < filas; i++) {
+            array.push(["<tr>"]);
+            for (let j = 0; j < columnas; j++) {
+                array[i + 1].push("<td>" + letras[Math.floor(Math.random() * 5)] + "</td>");
+            }
+            array[i + 1].push("</tr>");
+        }
+        array.push(["</table>"]);
+        return array;
+    }
+
+    function paciente0(x,y,matriz){
+        matriz[x][y] = matriz[x][y].substring(0,3) + " class='paciente0'>" + matriz[x][y].substring(4,5) + "</td>";
+    }
+
+    function infectar(matriz,x=0,y=0){
+        let elemento = matriz[x][y].substring(4,5);
+        // mirar con regex si contiene la clase paciente0 o infectado
+        if (matriz[x][y + 1]) {}
+    }
+
+
+    let biocenosis = matriz(10, 10);
+    texto.innerHTML += biocenosis.join("").replace(/,/g, "");
+    paciente0(5,5,biocenosis);
+    infectar(5,5,biocenosis);
+    texto.innerHTML += "<hr>" + biocenosis.join("").replace(/,/g, "");
+</script>
+</body>
+</html>
