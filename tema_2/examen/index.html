@@ -7,11 +7,11 @@
 <body>
 <h1>Retos JavaScript</h1>
 <script>
-    let cars = ["Saab", "Volvo", "BMW",["Honda", "Toyota",["Lexus",
+    /*let cars = ["Saab", "Volvo", "BMW",["Honda", "Toyota",["Lexus",
         "Mercedes", "Lada"], "Hyunday"]];
     let carrakos = ["Chevrolet", "Tesla", "BMW",["Honda",
         "Infiniti",["Lexus", "Mercedes", "Kia"], "Hyunday"],["Mazda",
-        "Mercedes", "Jeep",["KTM", "Nissan", "Isuzu"]]];
+        "Mercedes", "Jeep",["KTM", "Nissan", "Isuzu"]]];*/
     let newcars = ["Saab", "Volvo", "BMW",["Honda", "Toyota",["Lexus",
         "Volvo", "Lada"], "Hyunday","Volvo"]];
     let buddies = [{firstName:"Jonny", lastName:"Rambo",
@@ -30,11 +30,8 @@
     /*Ver si una marca es trendy. Una marca es trendy si esta es utilizada por más de
     un buddy. Crea en este mismo ejercicio un array trendy con dichas marcas. Muestra el array
     trendy por consola. Se pide que lo realices en 3-4 líneas de código*/
-    //console.table(buddies); // Para mejor visualización
-
-    let trendy = [];
-    buddies.map((item) => {trendy.push(item.car)});
-    trendy = trendy.filter((item,index,array) => {if (array.indexOf(item) !== index) return item});
+    console.table(buddies); // Para mejor visualización
+    let trendy = buddies.map((item) => {return item.car}).filter((item, index, array) => {return array.indexOf(item) !== index}).filter((item, index, array) => {return index === array.indexOf(item)});
     console.log(trendy);
 
     //EJERCICIO 3
