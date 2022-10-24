@@ -39,17 +39,35 @@
         matriz[x][y] = matriz[x][y].substring(0,3) + " class='paciente0'>" + matriz[x][y].substring(4,5) + "</td>";
     }
 
-    function infectar(matriz,x=0,y=0){
+    function propagacion(matriz,x=0,y=0){
         let elemento = matriz[x][y].substring(4,5);
-        // mirar con regex si contiene la clase paciente0 o infectado
-        if (matriz[x][y + 1]) {}
+        let arriba = matriz[x-1][y].substring(4,5);
+        let abajo = matriz[x+1][y].substring(4,5);
+        let izquierda = matriz[x][y-1].substring(4,5);
+        let derecha = matriz[x][y+1].substring(4,5);
+
+        if (arriba !== undefined && arriba === elemento){
+            matriz[x-1][y] = matriz[x-1][y].substring(0,3) + " class='infectado'>" + matriz[x-1][y].substring(4,5) + "</td>";
+            propagacion(matriz,x-1,y);
+        } else if (abajo !== undefined && abajo === elemento){
+            matriz[x+1][y] = matriz[x+1][y].substring(0,3) + " class='infectado'>" + matriz[x+1][y].substring(4,5) + "</td>";
+            propagacion(matriz,x+1,y);
+        } else if (izquierda !== undefined && izquierda === elemento){
+            matriz[x][y-1] = matriz[x][y-1].substring(0,3) + " class='infectado'>" + matriz[x][y-1].substring(4,5) + "</td>";
+            propagacion(matriz,x,y-1);
+        } else if (derecha !== undefined && derecha === elemento){
+            matriz[x][y+1] = matriz[x][y+1].substring(0,3) + " class='infectado'>" + matriz[x][y+1].substring(4,5) + "</td>";
+            propagacion(matriz,x,y+1);
+        } else {
+            return matriz;
+        }
     }
 
 
     let biocenosis = matriz(10, 10);
     texto.innerHTML += biocenosis.join("").replace(/,/g, "");
     paciente0(5,5,biocenosis);
-    infectar(5,5,biocenosis);
+    propagacion(biocenosis,5,5);
     texto.innerHTML += "<hr>" + biocenosis.join("").replace(/,/g, "");
 </script>
 </body>
