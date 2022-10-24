@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta content="text/html;charset=UTF-8" http-equiv="Content-Type">
     <title>PANDEMIC</title>
     <style>
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
         }
+
         .paciente0 {
             background-color: red;
         }
+
         .infectado {
             background-color: yellow;
         }
     </style>
 </head>
 <body>
-    <p id="txt"><p>
+<div id="txt"></div>
 <script>
     const texto = document.getElementById("txt");
 
@@ -35,43 +37,39 @@
         return array;
     }
 
-    function paciente0(matriz){
+    function paciente0(matriz) {
         let x = Math.floor(Math.random() * matriz.length);
         let y = Math.floor(Math.random() * matriz[1].length);
-        if (x === 0){
+        if (x === 0) {
             x++;
-        } else if (x === matriz.length - 1){
+        } else if (x === matriz.length - 1) {
             x--;
         }
-        if (y === 0){
+        if (y === 0) {
             y++;
-        } else if (y === matriz[1].length - 1){
+        } else if (y === matriz[1].length - 1) {
             y--;
         }
-        matriz[x][y] = matriz[x][y].substring(0,3) + " class='paciente0'>" + matriz[x][y].substring(4,5) + "</td>";
+        matriz[x][y] = matriz[x][y].substring(0, 3) + " class='paciente0'>" + matriz[x][y].substring(4, 5) + "</td>";
     }
 
-    function propagacion(matriz,x=0,y=0){
-        let elemento = matriz[x][y].substring(4,5);
-        let arriba = matriz[x-1][y].substring(4,5);
-        let abajo = matriz[x+1][y].substring(4,5);
-        let izquierda = matriz[x][y-1].substring(4,5);
-        let derecha = matriz[x][y+1].substring(4,5);
+    function infeccion(matriz, x, y) {
+        /*
+        Saltándote la primera y última fila, asi como el primer y último elemento de cada fila, busca el paciente 0 y
+        propaga el virus a todas las casillas de alrededor que tengan la misma especie que el paciente 0. Hacerlo de
+        manera recursiva hasta que no haya más propagación. Tener en cuenta que a veces las casillas de alrededor
+        pueden ser undefined.
+         */
+        if (x === undefined || y === undefined) {
+            x = matriz.findIndex((fila) => fila.includes("class='paciente0'>"));
+            y = matriz[x].findIndex((casilla) => casilla.includes("class='paciente0'>"));
+        }
 
-        if (arriba !== undefined && arriba === elemento){
-            matriz[x-1][y] = matriz[x-1][y].substring(0,3) + " class='infectado'>" + matriz[x-1][y].substring(4,5) + "</td>";
-            propagacion(matriz,x-1,y);
-        } else if (abajo !== undefined && abajo === elemento){
-            matriz[x+1][y] = matriz[x+1][y].substring(0,3) + " class='infectado'>" + matriz[x+1][y].substring(4,5) + "</td>";
-            propagacion(matriz,x+1,y);
-        } else if (izquierda !== undefined && izquierda === elemento){
-            matriz[x][y-1] = matriz[x][y-1].substring(0,3) + " class='infectado'>" + matriz[x][y-1].substring(4,5) + "</td>";
-            propagacion(matriz,x,y-1);
-        } else if (derecha !== undefined && derecha === elemento){
-            matriz[x][y+1] = matriz[x][y+1].substring(0,3) + " class='infectado'>" + matriz[x][y+1].substring(4,5) + "</td>";
-            propagacion(matriz,x,y+1);
-        } else {
-            return matriz;
+        let especie = matriz[x][y].substring(4, 5);
+
+        if (matriz[x - 1][y].substring(4, 5) === especie && !matriz[x - 1][y].includes("paciente0") && !matriz[x - 1][y].includes("infectado") && ) {
+            matriz[x - 1][y] = matriz[x - 1][y].substring(0, 3) + " class='infectado'>" + matriz[x - 1][y].substring(4, 5) + "</td>";
+            infeccion(matriz, x - 1, y);
         }
     }
 
@@ -81,7 +79,7 @@
     paciente0(biocenosis);
     texto.innerHTML += "<hr>" + biocenosis.join("").replace(/,/g, "");
 
-    texto.innerHTML += "<hr>" + propagacion(biocenosis,5,5).join("").replace(/,/g, "");
+    //texto.innerHTML += "<hr>" + infeccion(biocenosis, 5, 5).join("").replace(/,/g, "");
 </script>
 </body>
 </html>
