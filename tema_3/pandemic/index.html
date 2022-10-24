@@ -35,7 +35,19 @@
         return array;
     }
 
-    function paciente0(x,y,matriz){
+    function paciente0(matriz){
+        let x = Math.floor(Math.random() * matriz.length);
+        let y = Math.floor(Math.random() * matriz[1].length);
+        if (x === 0){
+            x++;
+        } else if (x === matriz.length - 1){
+            x--;
+        }
+        if (y === 0){
+            y++;
+        } else if (y === matriz[1].length - 1){
+            y--;
+        }
         matriz[x][y] = matriz[x][y].substring(0,3) + " class='paciente0'>" + matriz[x][y].substring(4,5) + "</td>";
     }
 
@@ -63,12 +75,13 @@
         }
     }
 
-
     let biocenosis = matriz(10, 10);
     texto.innerHTML += biocenosis.join("").replace(/,/g, "");
-    paciente0(5,5,biocenosis);
-    propagacion(biocenosis,5,5);
+
+    paciente0(biocenosis);
     texto.innerHTML += "<hr>" + biocenosis.join("").replace(/,/g, "");
+
+    texto.innerHTML += "<hr>" + propagacion(biocenosis,5,5).join("").replace(/,/g, "");
 </script>
 </body>
 </html>
