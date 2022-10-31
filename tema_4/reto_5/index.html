@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>retos JavaScript</title>
+</head>
+<body>
+<h1>retos JavaScript</h1>
+<script>
+
+
+let frutas = ["aguacate","pera","manzana","naranja","tomate","granada", "mango", "litchi","nispero"];
+let tropicales = ["aguacate", "mango", "litchi","nispero"];
+let tropicStock = [{fruta:"aguacate",stock:50}, {fruta:"mango",stock:10}, {fruta:"litchi",stock:20},{fruta:"nispero",stock:25}];
+// frutas del array frutas que sean tropicales
+console.log(frutas.filter(fruta => {
+    if (tropicales.includes(fruta)) {
+        return fruta;
+    }
+}));
+// frutas del array frutas que NO sean tropicales
+console.log(frutas.filter(fruta => {
+    if (!tropicales.includes(fruta)) {
+        return fruta;
+    }
+}));
+//Nombre de las frutas con un stock mayor de 21
+console.log(frutas.filter(fruta => {
+    if (tropicStock.find((tropi) => tropi.fruta == fruta && tropi.stock > 21) != undefined) {
+        return fruta;
+    }
+}));
+</script>
+
+</body>
+</html>
