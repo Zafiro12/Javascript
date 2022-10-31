@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>retos JavaScript</title>
+  </head>
+  <body>
+    <h1>retos JavaScript</h1>
+    <ul id="carrakos"></ul>
+
+    <script>
+      let carrakos = [
+        "Chevrolet",
+        "Tesla",
+        "BMW",
+        ["Honda", "Infiniti", ["Lexus", "Mercedes", "Kia"], "Hyunday"],
+        ["Mazda", "Mercedes", "Jeep", ["KTM", "Nissan", "Isuzu"]],
+      ];
+
+      let xungos = [
+        { nombre: "Bruce Lee", carros: ["Chevrolet", "Tesla", "BMW"] },
+        { nombre: "YakiChan", carros: ["Lexus", "Mercedes", "Kia"] },
+      ];
+
+      var lista = document.getElementById("carrakos");
+
+      const mostrar = (array, padre) => {
+        array.map((value) => {
+          if (Array.isArray(value)) {
+            let next = document.createElement("ul");
+            padre.appendChild(next);
+            mostrar(value, next);
+          } else {
+            let next = document.createElement("li");
+
+            xungos.map(item => {
+                if (item.carros.find(carro => {return carro==value}) != undefined) {
+                    value = value + " de " + item.nombre;
+                }
+            });
+
+            let texto = document.createTextNode(value);
+            next.appendChild(texto);
+            padre.appendChild(next);
+          }
+        });
+      };
+      mostrar(carrakos, lista);
+    </script>
+  </body>
+</html>

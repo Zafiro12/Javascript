@@ -16,20 +16,20 @@
       ];
       var lista = document.getElementById("carrakos");
 
-        const mostrar = (array, padre) => {
-            array.map((value) => {
-                if (Array.isArray(value)) {
-                    let next = document.createElement("ul");
-                    padre.appendChild(next);
-                    mostrar(value, next);
-                } else {
-                    let next = document.createElement("li");
-                    let texto = document.createTextNode(value);
-                    next.appendChild(texto);
-                    padre.appendChild(next);
-                }
-            });
-        }
+      const mostrar = (array, padre) => {
+          array.map((value) => {
+              if (Array.isArray(value)) {
+                  let next = document.createElement("ul");
+                  padre.appendChild(next);
+                  mostrar(value, next);
+              } else {
+                  let next = document.createElement("li");
+                  let texto = document.createTextNode(value);
+                  next.appendChild(texto);
+                  padre.appendChild(next);
+              }
+          });
+      }
 
     mostrar(carrakos, lista);
     </script>
