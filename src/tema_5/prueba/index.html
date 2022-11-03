@@ -3,9 +3,31 @@
 <head>
     <meta charset='utf-8'>
     <title>Prueba web worker</title>
-    <script src='main.js'></script>
 </head>
 <body>
-    
+    <button onclick="startWorker()">Empezar</button>
+    <button onclick="stopWorker()">Parar</button>
+    <h3 id="result">Resultados</h3>
+    <script>
+        var w;
+        function startWorker() {
+            if (typeof (Worker) !== "undefined") {
+
+                if (typeof (w) == "undefined") {
+                    w = new Worker("main.js");
+                }
+                w.onmessage = function (event) {
+                    document.getElementById("result").innerHTML = event.data;
+                };
+            } else {
+                document.getElementById("result").innerHTML = "Fallo al ejecutar el web worker";
+            }
+        }
+        function stopWorker() {
+            w.terminate();
+            w = undefined;
+        }
+        
+    </script>
 </body>
 </html>
