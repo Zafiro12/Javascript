@@ -1,33 +1,82 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <!DOCTYPE html>
-    <html>
-      <body>
-        <h2>kulevrilla Zostérica</h2>
-        <script>
-          var arr = [
-            [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", "*", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-            [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-          ];
+    <h2>kulevrilla Zostérica</h2>
+    <script>
+      var arr = [
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", "*", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+      ];
 
-          console.table(arr);
+      function generateRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+      }
 
-
-          function generateRandomInt(min, max) {
-            return Math.floor(Math.random() * (max - min) + min);
+      var x, y;
+      for (var i = 0; i < arr.length; i++) {
+        for (var j = 0; j < arr[i].length; j++) {
+          if (arr[i][j] === "*") {
+            x = i;
+            y = j;
           }
+        }
+      }
+      let random = generateRandomInt(1, 5);
+      console.log("random", random);
+      if (random === 1) {
+        // arriba
+        arr[x - 1][y] = "*";
+        x--;
+      } else if (random === 2) {
+        // abajo
+        arr[x + 1][y] = "*";
+        x++;
+      } else if (random === 3) {
+        // derecha
+        arr[x][y + 1] = "*";
+        y++;
+      } else if (random === 4) {
+        // izquierda
+        arr[x][y - 1] = "*";
+        y--;
+      }
+      do {
+        let random = generateRandomInt(1, 5);
+        let arriba = x > arr.length - 1;
+        let abajo = x < 0;
+        let derecha = y > arr[x].length - 1;
+        let izquierda = y < 0;
 
-          console.table(arr);
-        </script>
-      </body>
-    </html>
+        if (arriba || abajo || derecha || izquierda) {
+          break;
+        }
+
+        if (random === 1 && arr[x - 1][y] !== "*") {
+          // arriba
+          arr[x - 1][y] = "*";
+          x--;
+        } else if (random === 2 && arr[x + 1][y] !== "*") {
+          // abajo
+          arr[x + 1][y] = "*";
+          x++;
+        } else if (random === 3 && arr[x][y + 1] !== "*") {
+          // derecha
+          arr[x][y + 1] = "*";
+          y++;
+        } else if (random === 4 && arr[x][y - 1] !== "*") {
+          // izquierda
+          arr[x][y - 1] = "*";
+          y--;
+        }
+      } while (true);
+      console.table(arr);
+    </script>
   </body>
 </html>
