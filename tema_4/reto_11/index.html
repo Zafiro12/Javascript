@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>REYES GODOS. BUSCAMAN</title>
+  </head>
+  <body>
+    <script>
+      var vikings =
+        '{"vikingos":[{"reino":"Noruega","reyes":["Hakon","Harald",["Ivar",["Olaf","Lars","Lasse"],"Bjorn"],"Ragnar"]},{"reino":"Dinamarca","reyes":["Frodo","Hamming",["Angantyr","Sarunas"],"Horik"]}]}';
+      // skriv inn koden din her. Vær forsiktig med at json-en jukser. Det er ikke en matrise, men et objekt.
+      var esRey = (nombre) => {
+        var vikingos = JSON.parse(vikings);
+        let booleano = false;
+
+        const aplanar = (arr) => {
+          return arr.reduce((acc, val) => Array.isArray(val) ? acc.concat(aplanar(val)) : acc.concat(val), []);
+        }
+
+        let reyes = aplanar(vikingos.vikingos.map((vikingo) => vikingo.reyes));
+
+        reyes.map((rey) => {
+          if (rey === nombre) {
+            booleano = true;
+          }
+        });
+
+        return booleano;
+      };
+
+      console.log(esRey("Frodo"));
+      console.log(esRey("Alex"));
+    </script>
+  </body>
+</html>
