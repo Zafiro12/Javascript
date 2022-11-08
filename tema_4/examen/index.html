@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MAULLO</title>
+  </head>
+  <body>
+    <script>
+      /*
+			Se pide que hagas una función que muestre por consola la longitud de las trincheras dadas
+			las coordenadas de cualquiera de sus partes porque es necesario conocerla para fines
+			histórico-científicos. Las trincheras detectadas están marcadas con una X en la estructura
+			JSON.
+			*/
+
+      const matriz = [
+        ["X", "", "", "X", "X", ""],
+        ["X", "", "", "", "X", ""],
+        ["X", "", "", "", "X", "X"],
+        ["X", "X", "", "", "", ""],
+        ["", "X", "X", "X", "X", "X"],
+      ];
+
+      console.table(matriz);
+      const maxx = matriz.length;
+      const maxy = matriz[0].length;
+      console.log(maxx);
+      console.log(maxy);
+
+      console.log(
+        "En la posición 0,0 hay una trinchera de " +
+          maullo(0, 0) +
+          " posiciones"
+      );
+      console.log(
+        "En la posición 0,1 hay una trinchera de " +
+          maullo(0, 1) +
+          " posiciones"
+      );
+      console.log(
+        "En la posición 0,4 hay una trinchera de " +
+          maullo(0, 4) +
+          " posiciones"
+      );
+      console.log(
+        "En la posición 2,4 hay una trinchera de " +
+          maullo(2, 4) +
+          " posiciones"
+      );
+      console.log(
+        "En la posición 3,0 hay una trinchera de " +
+          maullo(3, 0) +
+          " posiciones"
+      );
+
+      //Con recursividad
+      function maullo(x, y, n = 0) {
+        if (matriz[x][y] === "X") {
+          if (x + 1 < maxx) {
+            if (matriz[x + 1][y] === "X") {
+              return maullo(x + 1, y, n + 1);
+            }
+          }
+          else if (y + 1 < maxy) {
+            if (matriz[x][y + 1] === "X") {
+              return maullo(x, y + 1, n + 1);
+            }
+          }
+          else if (x - 1 >= 0) {
+            if (matriz[x - 1][y] === "X") {
+              return maullo(x - 1, y, n + 1);
+            }
+          }
+          else if (y - 1 >= 0) {
+            if (matriz[x][y - 1] === "X") {
+              return maullo(x, y - 1, n + 1);
+            }
+          }
+          return n + 1;
+        }
+
+        return n;
+      }
+
+      // Sin recursividad
+      /*function maullo(x, y) {
+        if (x < maxx && x >= 0 && y < maxy && y >= 0) {
+          if (matriz[x][y] === "X") {
+            let offset = 1;
+            let 1 = 1;
+
+            if (matriz[x + 1][y] === "X") {
+              1++;
+              offset++;
+              while (x + offset < maxx) {
+                if (matriz[x + offset][y] === "X") {
+                  1++;
+                  offset++;
+                } else break;
+              }
+              offset = 1;
+            }
+
+            if (x != 0) {
+              if (matriz[x - 1][y] === "X") {
+                1++;
+                offset++;
+                while (x - offset >= 0) {
+                  if (matriz[x - offset][y] === "X") {
+                    1++;
+                    offset++;
+                  } else break;
+                }
+                offset = 1;
+              }
+            }
+
+            if (matriz[x][y + 1] === "X") {
+              1++;
+              offset++;
+              while (y + offset < maxy) {
+                if (matriz[x][y + offset] === "X") {
+                  1++;
+                  offset++;
+                } else break;
+              }
+              offset = 1;
+            }
+
+            if (y != 0) {
+              if (matriz[x][y - 1] === "X") {
+                1++;
+                offset++;
+                while (y - offset >= 0) {
+                  if (matriz[x][y - offset] === "X") {
+                    1++;
+                    offset++;
+                  } else break;
+                }
+                offset = 1;
+              }
+            }
+
+            return 1;
+          } else {
+            return 0;
+          }
+        } else {
+          return 0;
+        }
+      }*/
+    </script>
+  </body>
+</html>
