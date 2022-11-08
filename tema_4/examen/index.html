@@ -52,33 +52,26 @@
           " posiciones"
       );
 
-      //Con recursividad
-      function maullo(x, y, n = 0) {
-        if (matriz[x][y] === "X") {
-          if (x + 1 < maxx) {
-            if (matriz[x + 1][y] === "X") {
-              return maullo(x + 1, y, n + 1);
-            }
+      //Con recursividad copiando la matriz en otra y creando una nueva función dentro de la función principal
+      function maullo(x, y) {
+        let matriz2 =JSON.parse(JSON.stringify(matriz));
+        let contador = 0;
+        
+        function maullo2(x, y) {
+          if (x < 0 || y < 0 || x >= maxx || y >= maxy) {
+            return;
           }
-          else if (y + 1 < maxy) {
-            if (matriz[x][y + 1] === "X") {
-              return maullo(x, y + 1, n + 1);
-            }
+          if (matriz2[x][y] === "X") {
+            matriz2[x][y] = "";
+            contador++;
+            maullo2(x + 1, y);
+            maullo2(x - 1, y);
+            maullo2(x, y + 1);
+            maullo2(x, y - 1);
           }
-          else if (x - 1 >= 0) {
-            if (matriz[x - 1][y] === "X") {
-              return maullo(x - 1, y, n + 1);
-            }
-          }
-          else if (y - 1 >= 0) {
-            if (matriz[x][y - 1] === "X") {
-              return maullo(x, y - 1, n + 1);
-            }
-          }
-          return n + 1;
         }
-
-        return n;
+        maullo2(x, y);
+        return contador;
       }
 
       // Sin recursividad
