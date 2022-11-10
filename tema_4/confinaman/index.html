@@ -7,6 +7,28 @@
     <title>Confinaman</title>
   </head>
   <body>
+    <h1>Confinaman</h1>
+    <p>
+      En la segunda lista están las personas a marcar con una (C). No solamente
+      se marcaran dichas personas sino las personas con las que ha estado
+      reunida el individuo objetivo (nodos hermanos). El resultado debería ser
+      algo parecido a esto: Se pide también hacer 2 mejoras:
+    </p>
+    <ol>
+      <li>
+        <strong>Mejora 1.</strong> Convertir las funciones en funciones Arrow.
+      </li>
+      <li>
+        <strong>Mejora 2.</strong> Los datos de las personas enfermas son
+        obtenidas de un fichero PHP ConfinaMan.php en formato JSON. Es requisito
+        usar la función map().
+      </li>
+    </ol>
+
+    <hr />
+
+    <h2>Lista 1</h2>
+
     <ol id="lista1">
       <li>Perico</li>
       <li>Juanico</li>
@@ -29,6 +51,10 @@
       <li>Sofoclis</li>
     </ol>
 
+    <hr />
+
+    <h2>Lista 2</h2>
+
     <ol id="lista2">
       <li>Periquin</li>
       <li>Juanele</li>
@@ -36,22 +62,8 @@
     </ol>
 
     <script>
-      /*
-        En la segunda lista están las personas a marcar con una (C).
-        No solamente se marcaran dichas personas sino las
-        personas con las que ha estado reunida el individuo objetivo
-        (nodos hermanos). El resultado debería ser algo parecido a
-        esto:
-        Se pide también hacer 2 mejoras:
-        Mejora 1. Convertir las funciones en funciones
-        Arrow.
-        Mejora 2. Los datos de las personas enfermas son
-        obtenidas de un fichero PHP ConfinaMan.php en formato
-        JSON. Es requisito usar la función map().
-        */
-
       var nombresMarca = document.getElementById("lista2");
-      
+
       var arrayNombres = Array.from(nombresMarca.children).reduce((acc, el) => {
         acc.push(el.textContent);
         return acc;
@@ -60,10 +72,9 @@
       const confinaman = (obj) => {
         if (obj.children.length > 0) {
           Array.from(obj.children).map((elemento) => {
-
             if (arrayNombres.includes(elemento.textContent)) {
               let padre = elemento.parentNode;
-              
+
               Array.from(padre.children).map((nombre) => {
                 if (nombre.tagName == "LI") nombre.innerHTML += " (C)";
               });
