@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Godos</title>
+</head>
+<body>
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // coger los datos de godos.php
+                let datos = JSON.parse(xhr.responseText);
+                console.log(datos);
+            }
+        }
+        xhr.open("GET", "godos.php", true);
+        xhr.send();
+    </script>
+</body>
+</html>
