@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Superindices</title>
+</head>
+
+<body>
+    <div id="busca">
+        <p>Texto normal.<sub>subindice</sub> T<sup>2</sup>
+        </p>
+        <p>Texto normal.<sup>Texto superíndice.</sup></p>
+        <p>Ecuación:X<sup>2</sup>+3X+1</p>
+        <p>hola<sup>23</sup><p><p>hola<sup>2</sup></p></p></p>
+    </div>
+
+    <script>
+        /*
+        Crea una función que: Desde un nodo concreto del DOM y a todos sus descendientes,
+        cambie los superíndices 2 por superíndices 3.
+        Básicamente se pide que si aparece x2 lo cambies por x3. Y si por ejemplo aparece x22 no
+        deberías cambiarlo.
+        */
+        let busca = document.getElementById("busca");
+
+        function sustituidor(nodo) {
+            for (let i = 0; i < nodo.children.length; i++) {
+                if (nodo.children[i].tagName == "SUP" && nodo.children[i].innerHTML == "2") {
+                    console.log(nodo.children[i].innerHTML);
+                    nodo.children[i].innerHTML = "3";
+                }
+                
+                else if (nodo.children[i].children.length > 0) {
+                    sustituidor(nodo.children[i]);
+                }
+            }
+        }
+
+        sustituidor(busca);
+    </script>
+</body>
+
+</html>
