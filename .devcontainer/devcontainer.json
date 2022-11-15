@@ -8,10 +8,14 @@
 				"GitHub.copilot-labs"
 			]
 		}
-	}
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/implementors/features.
-	// "features": {},
+	"features": {
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "latest"
+		}
+	}
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
