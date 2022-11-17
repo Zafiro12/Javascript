@@ -2,6 +2,7 @@ version: '3'
 
 services:
     apache2:
+        container_name: servidor
         build:
             context: .
             dockerfile: .docker/php/Dockerfile
