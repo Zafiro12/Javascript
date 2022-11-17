@@ -14,21 +14,23 @@
                 // coger los datos de godos.php
                 let datos = JSON.parse(xhr.responseText);
                 console.log(datos);
-                // la estructura de datos es la siguiente:
-                // {"reyesgodos":[{"nombre":"Alarico","hijos":["Atanagildo","Leovigildo",{"nombre":"RecaredoI","hijos":["Sisebuto","RecaredoII",{"nombre":"Suintila","hijos":["Chindasvinto","Recesvinto","Wamba","Égica","Witiza","Rodrigo"]}]},"Sisenando","Chintila"]},"Witerico","Gundemaro"]}
+                
                 function mostrarDatos(datos) {
-                    let salida = "<ul>";
+                    let ul = document.createElement("ul");
                     for (let i = 0; i < datos.length; i++) {
+                        let li = document.createElement("li");
                         if (typeof datos[i] == "object") {
-                            salida += "<li>" + datos[i].nombre + mostrarDatos(datos[i].hijos) + "</li>";
+                            li.innerHTML = datos[i].nombre;
+                            li.appendChild(mostrarDatos(datos[i].hijos));
                         } else {
-                            salida += "<li>" + datos[i] + "</li>";
+                            li.innerHTML = datos[i];
                         }
+                        ul.appendChild(li);
                     }
-                    salida += "</ul>";
-                    return salida;
+                    return ul;
                 }
-                document.write(mostrarDatos(datos.reyesgodos));
+                // añadir la lista al body
+                document.body.appendChild(mostrarDatos(datos.reyesgodos));
             }
         }
         xhr.open("GET", "godos.php", true);

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minevancic</title>
+</head>
+
+<body>
+    <script>
+        let minas = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0],
+            [0, 1, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 1, 0],
+            [0, 0, 0, 0, 0, 0, 0]
+        ];
+        console.table(minas);
+
+        // funcion llamada color que de manera recursiva recorre una matriz y la devuelve de manera que
+        // siendo los 1 minas y los 0 casillas vacias, las casillas vacias tengan un numero que indique
+        // la distancia a la mina mas cercana, incluendo las diagonales.
+        function color(minas) {
+            let nueva = [];
+            for (let i = 0; i < minas.length; i++) {
+                nueva[i] = [];
+                for (let j = 0; j < minas[i].length; j++) {
+                    if (minas[i][j] == 1) {
+                        nueva[i][j] = 1;
+                    } else {
+                        nueva[i][j] = 0;
+                    }
+                }
+            }
+            let recorrido = [];
+            for (let i = 0; i < minas.length; i++) {
+                recorrido[i] = [];
+                for (let j = 0; j < minas[i].length; j++) {
+                    recorrido[i][j] = 0;
+                }
+            }
+            for (let i = 0; i < minas.length; i++) {
+                for (let j = 0; j < minas[i].length; j++) {
+                    if (minas[i][j] == 0) {
+                        let dist = 1;
+                        let encontrado = false;
+                        while (!encontrado) {
+                            for (let k = i - dist; k <= i + dist; k++) {
+                                for (let l = j - dist; l <= j + dist; l++) {
+                                    if (k >= 0 && k < minas.length && l >= 0 && l < minas[i].length) {
+                                        if (minas[k][l] == 1) {
+                                            nueva[i][j] = dist + 1;
+                                            encontrado = true;
+                                        }
+                                    }
+                                }
+                            }
+                            dist++;
+                        }
+                    }
+                }
+            }
+            return nueva;
+        }
+
+        console.table(color(minas));
+    </script>
+</body>
+
+</html>
