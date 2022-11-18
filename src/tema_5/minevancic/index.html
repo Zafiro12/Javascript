@@ -9,15 +9,29 @@
 </head>
 
 <body>
+    <h1>Minevancic</h1>
     <script>
-        let minas = [
-            [0, 0, 0, 0, 0, 0, 0],
-            [0, 1, 0, 0, 0, 0, 0],
-            [0, 1, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 1, 0],
-            [0, 0, 0, 0, 0, 1, 0],
-            [0, 0, 0, 0, 0, 0, 0]
-        ];
+        function generarNumeroAleatorio(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        function generarCampo() {
+            let campo = [];
+            for (let i = 0; i < 10; i++) {
+                campo[i] = [];
+                for (let j = 0; j < 10; j++) {
+                    let a = generarNumeroAleatorio(0, 5);
+                    if (a == 3) {
+                        campo[i][j] = 1;
+                    } else {
+                        campo[i][j] = 0;
+                    }
+                }
+            }
+            return campo;
+        }
+
+        let minas = generarCampo();
         console.table(minas);
 
         function color(minas) {
@@ -64,6 +78,34 @@
         }
 
         console.table(color(minas));
+
+        function mostrar(campo) {
+            let html = "<table>";
+            for (let i = 0; i < campo.length; i++) {
+                html += "<tr>";
+                for (let j = 0; j < campo[i].length; j++) {
+                    html += "<td style='background-color: ";
+                    if (campo[i][j] == 5) {
+                        html += "white";
+                    } else if (campo[i][j] == 1) {
+                        html += "red";
+                    } else if (campo[i][j] == 2) {
+                        html += "yellow";
+                    } else if (campo[i][j] == 3) {
+                        html += "green";
+                    } else if (campo[i][j] == 4) {
+                        html += "blue";
+                    } else {
+                        html += "black";
+                    }
+                    html += "'>" + campo[i][j] + "</td>";
+                }
+                html += "</tr>";
+            }
+            html += "</table>";
+            document.body.innerHTML += html;
+        }
+        mostrar(color(minas));
     </script>
 </body>
 
