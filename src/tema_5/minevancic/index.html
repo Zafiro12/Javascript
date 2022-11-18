@@ -20,9 +20,6 @@
         ];
         console.table(minas);
 
-        // funcion llamada color que de manera recursiva recorre una matriz y la devuelve de manera que
-        // siendo los 1 minas y los 0 casillas vacias, las casillas vacias tengan un numero que indique
-        // la distancia a la mina mas cercana, incluendo las diagonales.
         function color(minas) {
             let nueva = [];
             for (let i = 0; i < minas.length; i++) {
