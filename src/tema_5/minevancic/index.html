@@ -34,7 +34,7 @@
         let minas = generarCampo();
         console.table(minas);
 
-        function color(minas) {
+        function distancias(minas) {
             let nueva = [];
             for (let i = 0; i < minas.length; i++) {
                 nueva[i] = [];
@@ -77,9 +77,9 @@
             return nueva;
         }
 
-        console.table(color(minas));
+        console.table(distancias(minas));
 
-        function mostrar(campo) {
+        function color(campo) {
             let html = "<table>";
             for (let i = 0; i < campo.length; i++) {
                 html += "<tr>";
@@ -105,7 +105,7 @@
             html += "</table>";
             document.body.innerHTML += html;
         }
-        mostrar(color(minas));
+        color(distancias(minas));
     </script>
 </body>
 
