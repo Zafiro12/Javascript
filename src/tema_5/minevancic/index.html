@@ -46,24 +46,17 @@
                     }
                 }
             }
-            let recorrido = [];
-            for (let i = 0; i < minas.length; i++) {
-                recorrido[i] = [];
-                for (let j = 0; j < minas[i].length; j++) {
-                    recorrido[i][j] = 0;
-                }
-            }
             for (let i = 0; i < minas.length; i++) {
                 for (let j = 0; j < minas[i].length; j++) {
                     if (minas[i][j] == 0) {
-                        let dist = 1;
+                        let dist = 2;
                         let encontrado = false;
                         while (!encontrado) {
                             for (let k = i - dist; k <= i + dist; k++) {
                                 for (let l = j - dist; l <= j + dist; l++) {
                                     if (k >= 0 && k < minas.length && l >= 0 && l < minas[i].length) {
                                         if (minas[k][l] == 1) {
-                                            nueva[i][j] = dist + 1;
+                                            nueva[i][j] = dist;
                                             encontrado = true;
                                         }
                                     }
