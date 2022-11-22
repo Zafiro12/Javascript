@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Union List</title>
+</head>
+
+<body>
+    <ul id="lista1">
+        <li>manzana</li>
+        <li>pera</li>
+
+        <ul>
+            <li>conferencia</li>
+
+            <ul>
+                <li>conferenciaverde</li>
+                <li>conferenciaamarilla</li>
+                <li>conferenciaroja</li>
+            </ul>
+
+            <li>peradeagua</li>
+            <li>peradulce</li>
+
+            <ul>
+                <li>Dimas</li>
+                <li>Gestas</li>
+                <li>Malakatos</li>
+                <li>Jose</li>
+            </ul>
+
+        </ul>
+
+        <li>limon</li>
+        <li>limon</li>
+        <li>LIMON</li>
+    </ul>
+
+    <ul id="lista2">
+        <li>manzana</li>
+        <li>manzana</li>
+
+        <ul>
+            <li>manzana</li>
+            <li>manzana</li>
+        </ul>
+
+        <li>pera</li>
+        <li>limon</li>
+    </ul>
+
+    <script>
+        let lista1 = document.getElementById("lista1");
+        let lista2 = document.getElementById("lista2");
+
+        function extraer(lista) {
+            let arr = [];
+
+            for (let i = 0; i < lista.children.length; i++) {
+                if (lista.children[i].tagName === "LI") {
+                    arr.push(lista.children[i].innerHTML);
+                } else {
+                    extraer(lista.children[i]).forEach(e => arr.push(e));
+                }
+            }
+            return arr;
+        }
+
+        lista1 = extraer(lista1);
+        lista2 = extraer(lista2);
+
+        console.log(lista1);
+        console.log(lista2);
+
+        function union(lista1, lista2) {
+            let arr = [];
+
+            lista1.forEach(e => {
+                if (!arr.find(i => i.toUpperCase()==e.toUpperCase())) {
+                    arr.push(e.toUpperCase());
+                }
+            });
+
+            lista2.forEach(e => {
+                if (!arr.find(i => i.toUpperCase()==e.toUpperCase())) {
+                    arr.push(e.toUpperCase());
+                }
+            });
+
+            return arr;
+        }
+
+        console.log(union(lista1, lista2));
+    </script>
+</body>
+
+</html>
