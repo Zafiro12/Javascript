@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let godosJSON = '{"reyesgodos":[{"nombre":"Recesvinto","rey":"NO"},{"nombre":"Atanagildo", "rey": "SI"}, [{ "nombre": "Suintila", "rey": "NO" }, {"nombre": "Recesvinto","rey":"NO"}],{"nombre":"Suintila","rey":"SI"},[{"nombre":"Leovigildo","rey":"NO"},{"nombre":"Sisebuto","rey":"SI"},{"nombre":"Wamba","rey":"SI"},{"nombre":"Godofredo","rey":"NO"}]]} ';
+        let mujeres = '[{"hombre":"Recesvinto","mujer":"Lantanida"},{"hombre":"Suintila","mujer":"Clorotea"},{"hombre":"Atanagildo","mujer":"Cadmia"},{"hombre":"Recaredo","mujer":"Lantanida"}]';
+        let godos = JSON.parse(godosJSON);
+        let godas = JSON.parse(mujeres);
+
+        console.log(godos.reyesgodos);
+
+        function aplanar(arr) {
+            let arr2 = [];
+            arr.map(element => {
+                if (Array.isArray(element)) {
+                    arr2 = arr2.concat(aplanar(element));
+                } else {
+                    arr2.push(element);
+                }
+            });
+            return arr2;
+        }
+
+        godos = aplanar(godos.reyesgodos);
+        console.log(godos);
+
+        function reyesGodos(godos, godas) {
+            return godos.filter(rey => rey.rey == "SI").filter(rey => godas.find(e => e.hombre==rey.nombre));
+        }
+
+        console.log(reyesGodos(godos, godas));
+    </script>
+</body>
+
+</html>
