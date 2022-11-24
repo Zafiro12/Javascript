@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form>
+    <form id="form">
         <p>Introduzca usuario y password:</p>
         <input type="text" id="usuario" placeholder="usuario"><br>
         <input type="password" id="password" placeholder="password"><br>
@@ -17,20 +17,25 @@
     </form>
     <p id="resultado"></p>
     <script>
-        function enviar() {
-            var xmlhttp = new XMLHttpRequest();
-            var url = "validar.php";
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("resultado").innerHTML = this.responseText;
+        // using ajax, send the user and password to validar.php and show the result in the paragraph with id "resultado"
+        
+        const form = document.getElementById("form");
+        const resultado = document.getElementById("resultado");
+        
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const usuario = document.getElementById("usuario").value;
+            const password = document.getElementById("password").value;
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "validar.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send(`usuario=${usuario}&password=${password}`);
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    resultado.innerHTML = xhr.responseText;
                 }
-            };
-            let datos = new FormData();
-            datos.append("usuario", document.getElementById("usuario").value);
-            datos.append("password", document.getElementById("password").value);
-            xmlhttp.open("POST", url, true);
-            xmlhttp.send(datos);
-        }
+            }
+        });
 
     </script>
 </body>

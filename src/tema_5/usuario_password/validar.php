@@ -1,7 +1,7 @@
 <?php
-if (isset($_GET['usuario']) && isset($_GET['password'])) {
-    $usuario = $_GET['usuario'];
-    $password = $_GET['password'];
+if (isset($_POST['usuario']) && isset($_POST['password'])) {
+    $usuario = $_POST['usuario'];
+    $password = $_POST['password'];
     if ($usuario == 'admin' && $password == '1234') {
         echo 'Bienvenido';
     } else {
