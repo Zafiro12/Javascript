@@ -75,19 +75,15 @@
         console.log(lista1);
         console.log(lista2);
 
-        function union(lista1, lista2) {
+        function union(...lista) {
             let arr = [];
 
-            lista1.forEach(e => {
-                if (!arr.find(i => i.toUpperCase()==e.toUpperCase())) {
-                    arr.push(e.toUpperCase());
-                }
-            });
-
-            lista2.forEach(e => {
-                if (!arr.find(i => i.toUpperCase()==e.toUpperCase())) {
-                    arr.push(e.toUpperCase());
-                }
+            lista.forEach(e => {
+                e.forEach(v => {
+                    if (!arr.find(i => i.toUpperCase()==v.toUpperCase())) {
+                        arr.push(v.toUpperCase());
+                    }
+                });
             });
 
             return arr;
