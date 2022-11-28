@@ -1,26 +1,34 @@
-function Input() {
+function Texto(props) {
 	return (
 		<>
-			<input type="text" />
+			<p>{props.texto}</p>
 		</>
 	);
 }
 
-function Boton() {
+function Input(props) {
 	return (
 		<>
-			<button>Enviar</button>
+			<input type="text" placeholder={props.placeholder} /><br />
+		</>
+	);
+}
+
+function Boton(props) {
+	return (
+		<>
+			<button>{props.nombre}</button>
 		</>
 	);
 }
 
 function App() {
 	return (
-		<div>
-			Nombre:
-			<Input />
-			<Boton />
-		</div>
+		<>
+			<Texto texto="Nombre" />
+			<Input placeholder="Nombre" />
+			<Boton nombre="Dale" />
+		</>
 	);
 }
 
