@@ -36,7 +36,7 @@ function Filas(props) {
 function Columnas(props) {
   let columnas = [];
   for (let i = 0; i < props.columnas; i++) {
-    columnas.push(<td key={i}><button>A</button></td>);
+    columnas.push(<td key={i}><button>&nbsp;&nbsp;&nbsp;</button></td>);
   }
   return <tr>{columnas}</tr>;
 }
