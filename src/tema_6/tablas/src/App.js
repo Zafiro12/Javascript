@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from 'react';
 
-function App() {
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filas: 5,
+      columnas: 5,
+    };
+  }
+  render() {
+    return (
+      <Tabla filas={this.state.filas} columnas={this.state.columnas} />
+    );
+  }
+}
+
+function Tabla(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <table>
+      <tbody>
+        <Filas filas={props.filas} columnas={props.columnas} />
+      </tbody>
+    </table>
   );
+}
+
+function Filas(props) {
+  let filas = [];
+  for (let i = 0; i < props.filas; i++) {
+    filas.push(<Columnas key={i} columnas={props.columnas} />);
+  }
+  return filas;
+}
+
+function Columnas(props) {
+  let columnas = [];
+  for (let i = 0; i < props.columnas; i++) {
+    columnas.push(<td key={i}><button>A</button></td>);
+  }
+  return <tr>{columnas}</tr>;
 }
 
 export default App;
