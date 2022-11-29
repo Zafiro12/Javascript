@@ -20,3 +20,5 @@ const GODOS = [
         texto: "Hijo de Leovigildo que se convirtió al catolicismo."
     }
 ];
+
+export default GODOS;
