@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Card, CardTitle, Button, CardBody, CardSubtitle, CardText } from 'reactstrap';
+import React from 'react';
+import { Card, CardTitle, Button, CardBody} from 'reactstrap';
 const Sino = (props) => {
   return (
     <>
@@ -28,7 +29,7 @@ const Sino = (props) => {
 function App() {
   return (
     <div className="App">
-      <Sino />
+      <Sino titulo="HOLA" imagen="logo512.png" />
     </div>
   );
 }
