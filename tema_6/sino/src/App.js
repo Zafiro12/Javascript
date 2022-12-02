@@ -29,7 +29,7 @@ const Sino = (props) => {
 function App() {
   return (
     <div className="App">
-      <Sino titulo="HOLA" imagen="logo512.png" />
+      <Sino titulo="HOLA" imagen="https://upload.wikimedia.org/wikipedia/commons/3/3d/Simbolo_Si_Revocatoria_Lima_2013.png" />
     </div>
   );
 }
