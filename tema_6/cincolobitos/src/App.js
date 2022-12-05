@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'reactstrap';
 
 function Botones() {
   const [numero, setNumero] = useState([0, 0, 0, 0, 0]);
-  const [color, setColor] = useState(['gris', 'gris', 'gris', 'gris', 'gris']);
+  const [color, setColor] = useState(['secondary', 'secondary', 'secondary', 'secondary', 'secondary']);
   const [mayor, setMayor] = useState(1);
 
   const aumentar = (n) => {
@@ -25,9 +26,9 @@ function Botones() {
 
     for (let i = 0; i < nuevoNumero.length; i++) {
       if (nuevoNumero[i] >= mayorN) {
-        nuevoColor[i] = 'rojo';
+        nuevoColor[i] = 'primary';
       } else {
-        nuevoColor[i] = 'gris';
+        nuevoColor[i] = 'secondary';
       }
     }
     setColor(nuevoColor);
@@ -36,11 +37,11 @@ function Botones() {
 
   return (
     <div>
-      <button className={color[0]} onClick={() => aumentar(0)}> {numero[0]} </button>
-      <button className={color[1]} onClick={() => aumentar(1)}> {numero[1]} </button>
-      <button className={color[2]} onClick={() => aumentar(2)}> {numero[2]} </button>
-      <button className={color[3]} onClick={() => aumentar(3)}> {numero[3]} </button>
-      <button className={color[4]} onClick={() => aumentar(4)}> {numero[4]} </button>
+      <Button color={color[0]} onClick={() => aumentar(0)}> {numero[0]} </Button>
+      <Button color={color[1]} onClick={() => aumentar(1)}> {numero[1]} </Button>
+      <Button color={color[2]} onClick={() => aumentar(2)}> {numero[2]} </Button>
+      <Button color={color[3]} onClick={() => aumentar(3)}> {numero[3]} </Button>
+      <Button color={color[4]} onClick={() => aumentar(4)}> {numero[4]} </Button>
     </div>
   );
 }
