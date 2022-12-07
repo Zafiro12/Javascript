@@ -7,13 +7,15 @@ function Botones() {
   const [color, setColor] = useState(['secondary', 'secondary', 'secondary', 'secondary', 'secondary']);
   const [mayor, setMayor] = useState(1);
 
-  const aumentar = (n) => {
+  function aumentar(n) {
     const nuevoNumero = [...numero];
+    const nuevoColor = [...color];
+    let mayorN = mayor;
+
     nuevoNumero[n] = nuevoNumero[n] + 1;
     setNumero(nuevoNumero);
     console.log(nuevoNumero);
 
-    let mayorN = mayor;
     for (let i = 0; i < nuevoNumero.length; i++) {
       if (nuevoNumero[i] > mayorN) {
         mayorN = nuevoNumero[i];
@@ -22,7 +24,6 @@ function Botones() {
     setMayor(mayorN);
     console.log(mayorN);
 
-    const nuevoColor = [...color];
 
     for (let i = 0; i < nuevoNumero.length; i++) {
       if (nuevoNumero[i] >= mayorN) {
@@ -35,46 +36,44 @@ function Botones() {
     console.log(color);
   };
 
-  const disminuir = (n) => {
-      const nuevoNumero = [...numero];
-      if (nuevoNumero[n] > 0) {
-        nuevoNumero[n] = nuevoNumero[n] - 1;
-      }
-      setNumero(nuevoNumero);
-      console.log(nuevoNumero);
+  async function disminuir(n) {
+    const nuevoNumero = [...numero];
+    const nuevoColor = [...color];
+    let mayorN = mayor;
 
-      let mayorN = mayor;
-      for (let i = 0; i < nuevoNumero.length; i++) {
-        if (nuevoNumero[i] > mayorN) {
-          mayorN = nuevoNumero[i];
-        }
-      }
-      setMayor(mayorN);
-      console.log(mayorN);
+    if (nuevoNumero[n] > 0) {
+      nuevoNumero[n] = nuevoNumero[n] - 1;
+    }
+    setNumero(nuevoNumero);
+    console.log(nuevoNumero);
 
-      const nuevoColor = [...color];
-
-      for (let i = 0; i < nuevoNumero.length; i++) {
-        if (nuevoNumero[i] >= mayorN) {
-          nuevoColor[i] = 'primary';
-        } else {
-          nuevoColor[i] = 'secondary';
-        }
+    for (let i = 0; i < nuevoNumero.length; i++) {
+      if (nuevoNumero[i] > mayorN) {
+        mayorN = nuevoNumero[i];
       }
-      setColor(nuevoColor);
-      console.log(color);
+    }
+    setMayor(mayorN);
+    console.log(mayorN);
+
+    for (let i = 0; i < nuevoNumero.length; i++) {
+      if (nuevoNumero[i] >= mayorN) {
+        nuevoColor[i] = 'primary';
+      } else {
+        nuevoColor[i] = 'secondary';
+      }
+    }
+    setColor(nuevoColor);
+    console.log(color);
   };
 
   return (
     <div>
       <Button color={color[0]} onClick={() => { 
         aumentar(0);
+        setTimeout(() =>
+          disminuir(0), 1000);
           
-        setTimeout(() => {
-          disminuir(0);
-        }, 3000);
-
-        }}> {numero[0]} 
+        }}> {numero[0]}
       </Button>
       <Button color={color[1]} onClick={() => aumentar(1)}> {numero[1]} </Button>
       <Button color={color[2]} onClick={() => aumentar(2)}> {numero[2]} </Button>
