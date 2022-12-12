@@ -1,91 +1,95 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
 
+
+function Boton(props) {
+  const { click, color, valor } = props;
+  return (
+    <Button color={color} onClick={click}>{valor}</Button>
+  );
+}
+
 function Botones() {
-  const [numero, setNumero] = useState([0, 0, 0, 0, 0]);
-  const [color, setColor] = useState(['secondary', 'secondary', 'secondary', 'secondary', 'secondary']);
-  const [mayor, setMayor] = useState(1);
+  const [contador, setContador] = useState([0, 0, 0, 0, 0]);
+  const [mayor, setMayor] = useState(0);
+  const [color, setColor] = useState(['primary', 'primary', 'primary', 'primary', 'primary']);
 
-  function aumentar(n) {
-    const nuevoNumero = [...numero];
-    const nuevoColor = [...color];
+  useEffect(() => {
+    Math.max(...contador) === 0 ? setMayor(0) : setMayor(Math.max(...contador));
+
+    const timeout = setTimeout(() => {
+      const nuevoContador = [...contador];
+      const nuevoColor = [...color];
+      nuevoContador.forEach((valor, i) => {
+        if (valor > 0) {
+          nuevoContador[i] -= 1;
+        }
+      });
+      setContador(nuevoContador);
+
+
+      contador.forEach((valor, i) => {
+        if (valor === mayor) {
+          nuevoColor[i] = 'success';
+        } else {
+          nuevoColor[i] = 'primary';
+        }
+
+        if (valor === 0) {
+          nuevoColor[i] = 'primary';
+        }
+      });
+      setColor(nuevoColor);
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, [contador, mayor, color]);
+
+
+  const aumentar = (i) => {
+    const nuevoContador = [...contador];
+    nuevoContador[i] += 1;
+    setContador(nuevoContador);
+
     let mayorN = mayor;
-
-    nuevoNumero[n] = nuevoNumero[n] + 1;
-    setNumero(nuevoNumero);
-    console.log(nuevoNumero);
-
-    for (let i = 0; i < nuevoNumero.length; i++) {
-      if (nuevoNumero[i] > mayorN) {
-        mayorN = nuevoNumero[i];
+    for (let i = 0; i < nuevoContador.length; i++) {
+      if (nuevoContador[i] > mayorN) {
+        mayorN = nuevoContador[i];
       }
     }
     setMayor(mayorN);
-    console.log(mayorN);
 
-
-    for (let i = 0; i < nuevoNumero.length; i++) {
-      if (nuevoNumero[i] >= mayorN) {
-        nuevoColor[i] = 'primary';
-      } else {
-        nuevoColor[i] = 'secondary';
-      }
-    }
-    setColor(nuevoColor);
-    console.log(color);
-  };
-
-  async function disminuir(n) {
-    const nuevoNumero = [...numero];
     const nuevoColor = [...color];
-    let mayorN = mayor;
 
-    if (nuevoNumero[n] > 0) {
-      nuevoNumero[n] = nuevoNumero[n] - 1;
-    }
-    setNumero(nuevoNumero);
-    console.log(nuevoNumero);
-
-    for (let i = 0; i < nuevoNumero.length; i++) {
-      if (nuevoNumero[i] > mayorN) {
-        mayorN = nuevoNumero[i];
-      }
-    }
-    setMayor(mayorN);
-    console.log(mayorN);
-
-    for (let i = 0; i < nuevoNumero.length; i++) {
-      if (nuevoNumero[i] >= mayorN) {
-        nuevoColor[i] = 'primary';
+    for (let i = 0; i < nuevoContador.length; i++) {
+      if (nuevoContador[i] >= mayorN) {
+        nuevoColor[i] = 'success';
       } else {
-        nuevoColor[i] = 'secondary';
+        nuevoColor[i] = 'primary';
+      }
+
+      if (nuevoContador[i] === 0) {
+        nuevoColor[i] = 'primary';
       }
     }
     setColor(nuevoColor);
-    console.log(color);
   };
+
+
+
 
   return (
-    <div>
-      <Button color={color[0]} onClick={() => { 
-        aumentar(0);
-        setTimeout(() =>
-          disminuir(0), 1000);
-          
-        }}> {numero[0]}
-      </Button>
-      <Button color={color[1]} onClick={() => aumentar(1)}> {numero[1]} </Button>
-      <Button color={color[2]} onClick={() => aumentar(2)}> {numero[2]} </Button>
-      <Button color={color[3]} onClick={() => aumentar(3)}> {numero[3]} </Button>
-      <Button color={color[4]} onClick={() => aumentar(4)}> {numero[4]} </Button>
-    </div>
+    <>
+      <Boton click={() => aumentar(0)} color={color[0]} valor={contador[0]} />
+      <Boton click={() => aumentar(1)} color={color[1]} valor={contador[1]} />
+      <Boton click={() => aumentar(2)} color={color[2]} valor={contador[2]} />
+      <Boton click={() => aumentar(3)} color={color[3]} valor={contador[3]} />
+      <Boton click={() => aumentar(4)} color={color[4]} valor={contador[4]} />
+    </>
   );
 }
 
 function App() {
-
-
   return (
     <>
       <Botones />
