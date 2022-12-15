@@ -14,9 +14,9 @@ function Botones(props) {
   const colores = props.colores || coloresDefault
   const [color, setColor] = useState('primary')
 
-  const handleClick = (e) => {
-    setColor(e)
-    console.log(e)
+  const handleClick = (c) => {
+    setColor(c)
+    console.log(c)
   }
 
   return (
