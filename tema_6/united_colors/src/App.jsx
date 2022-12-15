@@ -17,6 +17,38 @@ function Botones(props) {
 
   const [matriz, setMatriz] = useState(Array(rows).fill(Array(cols).fill(colorDefault)))
 
+  const ecualizacionRecursiva = (matriz, i, j, color) => {
+    if (i>0) {
+      if (matriz[i-1][j]!==color && matriz[i-1][j]!==colorDefault) {
+        matriz[i-1][j]=color
+        matriz = ecualizacionRecursiva(matriz, i-1, j, color)
+      }
+    }
+    
+    if (i<rows-1) {
+      if (matriz[i+1][j]!==color && matriz[i+1][j]!==colorDefault) {
+        matriz[i+1][j]=color
+        matriz = ecualizacionRecursiva(matriz, i+1, j, color)
+      }
+    }
+
+    if (j>0) {
+      if (matriz[i][j-1]!==color && matriz[i][j-1]!==colorDefault) {
+        matriz[i][j-1]=color
+        matriz = ecualizacionRecursiva(matriz, i, j-1, color)
+      }
+    }
+
+    if (j<cols-1) {
+      if (matriz[i][j+1]!==color && matriz[i][j+1]!==colorDefault) {
+        matriz[i][j+1]=color
+        matriz = ecualizacionRecursiva(matriz, i, j+1, color)
+      }
+    }
+
+    return matriz
+  }
+
   const handleClick = (posx, posy) => {
     const nuevaMatriz = matriz.map((fila, i) => {
       return fila.map((color, j) => {
@@ -43,6 +75,10 @@ function Botones(props) {
         }
       })
     })
+    
+    console.log(nuevaMatriz[posy][posx])
+    ecualizacionRecursiva(nuevaMatriz, posy, posx, nuevaMatriz[posy][posx])
+
     setMatriz(nuevaMatriz)
   }
 
