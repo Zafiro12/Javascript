@@ -71,6 +71,7 @@ function Botones(props) {
           if (color !== "primary") {
             return colorDefault;
           }
+          /* Descomentar para que el color mire a los lados
           if (i > 0 && matriz[i - 1][j] !== colorDefault) {
             return matriz[i - 1][j];
           }
@@ -83,7 +84,7 @@ function Botones(props) {
           if (j < cols - 1 && matriz[i][j + 1] !== colorDefault) {
             return matriz[i][j + 1];
           }
-
+          */
           return posiblesColores[
             Math.floor(Math.random() * posiblesColores.length)
           ];
