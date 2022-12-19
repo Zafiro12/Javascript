@@ -17,32 +17,32 @@ function Botones(props) {
 
   const [matriz, setMatriz] = useState(Array(rows).fill(Array(cols).fill(colorDefault)))
 
-  const ecualizacionRecursiva = (matriz, i, j, color) => {
+  const ecualizar = (matriz, i, j, color) => {
     if (i>0) {
       if (matriz[i-1][j]!==color && matriz[i-1][j]!==colorDefault) {
         matriz[i-1][j]=color
-        matriz = ecualizacionRecursiva(matriz, i-1, j, color)
+        matriz = ecualizar(matriz, i-1, j, color)
       }
     }
     
     if (i<rows-1) {
       if (matriz[i+1][j]!==color && matriz[i+1][j]!==colorDefault) {
         matriz[i+1][j]=color
-        matriz = ecualizacionRecursiva(matriz, i+1, j, color)
+        matriz = ecualizar(matriz, i+1, j, color)
       }
     }
 
     if (j>0) {
       if (matriz[i][j-1]!==color && matriz[i][j-1]!==colorDefault) {
         matriz[i][j-1]=color
-        matriz = ecualizacionRecursiva(matriz, i, j-1, color)
+        matriz = ecualizar(matriz, i, j-1, color)
       }
     }
 
     if (j<cols-1) {
       if (matriz[i][j+1]!==color && matriz[i][j+1]!==colorDefault) {
         matriz[i][j+1]=color
-        matriz = ecualizacionRecursiva(matriz, i, j+1, color)
+        matriz = ecualizar(matriz, i, j+1, color)
       }
     }
 
@@ -77,7 +77,13 @@ function Botones(props) {
     })
     
     console.log(nuevaMatriz[posy][posx])
-    ecualizacionRecursiva(nuevaMatriz, posy, posx, nuevaMatriz[posy][posx])
+    
+    if (nuevaMatriz[posy][posx] === colorDefault) {
+      setMatriz(nuevaMatriz)
+      return
+    }
+    
+    ecualizar(nuevaMatriz, posy, posx, nuevaMatriz[posy][posx])
 
     setMatriz(nuevaMatriz)
   }
