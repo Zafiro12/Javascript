@@ -1,1 +1,1 @@
-# Ejercicios y examenes de 2 DAW
+# Ejercicios y examenes de Javascript y React de 2 DAW
