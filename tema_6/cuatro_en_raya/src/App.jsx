@@ -12,29 +12,23 @@ const MapaBotones = (props) => {
             <div key={x}>
               {
                 fila.map((boton, y) => {
-                  if (x === 0 && boton !== "secondary") {
+                  if (boton !== "secondary") {
                     return (
                       <Button
                         key={y}
                         onClick={() => props.onClick(x, y)}
                         color={boton}
-                      ></Button>
+                      >&nbsp;&nbsp;&nbsp;&nbsp;</Button>
                     );
-                  }
-                  if (x === 0) {
+                  } else {
                     return (
                       <Button
                         key={y}
                         onClick={() => props.onClick(x, y)}
                         color={boton}
                         outline
-                      ></Button>
+                      >&nbsp;&nbsp;&nbsp;&nbsp;</Button>
                     );
-                  }
-                  if (boton !== "secondary") {
-                    return <Button key={y} color={boton}></Button>;
-                  } else {
-                    return <Button key={y} color={boton} disabled outline></Button>;
                   }
                 })
               }
