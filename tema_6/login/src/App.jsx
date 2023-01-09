@@ -1,11 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'reactstrap';
+import Menu from "./components/Menu";
 
 function App() {
 
   return (
     <>
-      <Button>Hola</Button>
+      <Menu />
     </> 
   )
 }
