@@ -4,7 +4,7 @@ import { Button, ButtonGroup, Navbar, NavbarBrand, NavLink } from 'reactstrap';
 function Menu() {
     return(
         <Navbar>
-            <NavbarBrand href='public/vite.svg' />
+            <NavbarBrand><img src="vite.svg" alt="Vite" />Vite</NavbarBrand>
             <NavLink>
                 <ButtonGroup>
                     <Button>UNO</Button>
