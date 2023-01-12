@@ -48,8 +48,6 @@ function App() {
 
         let obj = { id: id, name: name, email: email };
 
-
-
         l.push(obj);
         console.log("Insertado: " + id);
         setUsers(l);
