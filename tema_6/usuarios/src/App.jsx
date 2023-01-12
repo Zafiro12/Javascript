@@ -27,10 +27,10 @@ function Display(props) {
             {
                 props.users.map((user, i) => {
                     return (
-                        <div key={i}>
+                        <p key={i}>
                             <span>{user.name} - {user.email}</span>
                             <Button color='danger' onClick={() => props.f(user.id)} >Borrar</Button>
-                        </div>
+                        </p>
                     )
                 })
             }
@@ -50,7 +50,7 @@ function App() {
 
         l.push(obj);
         console.log("Insertado: " + id);
-        
+
         setUsers(l);
     }
 
