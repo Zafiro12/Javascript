@@ -50,6 +50,7 @@ function App() {
 
         l.push(obj);
         console.log("Insertado: " + id);
+        
         setUsers(l);
     }
 
