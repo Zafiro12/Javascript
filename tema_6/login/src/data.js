@@ -1,0 +1,1 @@
+export const PHPCONN = "http://localhost/javascript/index.php";
