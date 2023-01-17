@@ -1,6 +1,6 @@
-import Menu from "./components/Menu";
-import Login from "./components/Login";
-import {useEffect, useState} from "react";
+import Menu from "./components/Menu.jsx";
+import Login from "./components/Login.jsx";
+import {useState} from "react";
 import axios from "axios";
 import md5 from "md5"
 import {PHPCONN} from "./data.js";
