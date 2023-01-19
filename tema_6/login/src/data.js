@@ -1,1 +1,1 @@
-export const PHPCONN = "http://localhost/javascript/index.php";
+export const PHPLOGIN = "http://localhost/javascript/index.php";
