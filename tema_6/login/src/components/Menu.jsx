@@ -8,7 +8,7 @@ import Tres from "./Tres.jsx";
 function Menu() {
     const [n, setN] = useState(1);
     const [valor, setValor] = useState("");
-    const [input, setInput] = useState();
+    const [input, setInput] = useState(<></>);
 
     const handleClick = (number) => {
         setN(number);
