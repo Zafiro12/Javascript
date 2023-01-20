@@ -1,5 +1,6 @@
 import {Button} from "reactstrap";
 import {useState} from "react";
+import Menu from "./Menu.jsx";
 
 function Login(props) {
     const [usuario, setUsuario] = useState("");
@@ -9,9 +10,12 @@ function Login(props) {
         props.f(usuario, clave);
     }
 
+    const obj = props.correcto ? <></> : <span style={{color: "red"}}>Usuario o contraseña no válidos</span>
+
     return (
         <div className="text-center">
             <h1>Iniciar sesión</h1>
+            {obj}
             <p>
                 <input type="text" placeholder="Nombre de usuario" onChange={event=>setUsuario(event.target.value)} />
             </p>
