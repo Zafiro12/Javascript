@@ -1,8 +1,14 @@
+import {Button} from "reactstrap";
+import {useState} from "react";
+
 function Dos(props) {
-    return(
+    const [valor, setValor] = useState("");
+
+    return (
         <>
             <h2>Dos</h2>
-            <input type="text" value={props.valor} onChange={event => props.f(event.target.value)} />
+            <input type="text" onChange={event => setValor(event.target.value)}/>
+            <Button color="primary" onClick={() => props.f(valor)}>Add</Button>
         </>
     );
 }

@@ -4,10 +4,11 @@ import {useEffect, useState} from "react";
 import Uno from "./Uno.jsx";
 import Dos from "./Dos.jsx";
 import Tres from "./Tres.jsx";
+import Titulo from "./Titulo.jsx";
 
 function Menu() {
     const [n, setN] = useState(1);
-    const [valor, setValor] = useState("");
+    const [valor, setValor] = useState("Titulo");
     const [input, setInput] = useState(<></>);
 
     const handleClick = (number) => {
@@ -16,34 +17,34 @@ function Menu() {
 
     useEffect(() => {
         if (n === 1) {
-            setInput(<Uno valor={valor} f={(str) => {
+            setInput(<Uno f={(str) => {
                 setValor(str)
             }}></Uno>);
         }
         if (n === 2) {
-            setInput(<Dos valor={valor} f={(str) => {
+            setInput(<Dos f={(str) => {
                 setValor(str)
             }}></Dos>);
         }
         if (n === 3) {
-            setInput(<Tres valor={valor} f={(str) => {
+            setInput(<Tres f={(str) => {
                 setValor(str)
             }}></Tres>);
         }
     }, [n, valor]);
 
-    return (
-        <div className="text-center">
+    return (<div className="text-center">
             <Navbar>
                 <NavbarBrand><img src="vite.svg" alt="Vite"/>Vite</NavbarBrand>
                 <NavLink>
                     <ButtonGroup>
-                        <Button onClick={() => handleClick(1)}>UNO</Button>
-                        <Button onClick={() => handleClick(2)}>DOS</Button>
-                        <Button onClick={() => handleClick(3)}>TRES</Button>
+                        <Button color={n===1?"primary":"secondary"} onClick={() => handleClick(1)}>UNO</Button>
+                        <Button color={n===2?"primary":"secondary"} onClick={() => handleClick(2)}>DOS</Button>
+                        <Button color={n===3?"primary":"secondary"} onClick={() => handleClick(3)}>TRES</Button>
                     </ButtonGroup>
                 </NavLink>
             </Navbar>
+            <Titulo title={valor}/>
             {input}
         </div>
 

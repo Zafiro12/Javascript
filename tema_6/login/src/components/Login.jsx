@@ -15,7 +15,7 @@ function Login(props) {
         <Card
             body
             color="light"
-            style={{width: "18rem", height: "18rem", flex: "0 18rem"}}
+            style={{width: "18rem", flex: "0 18rem"}}
         >
             <CardTitle tag="h5">Iniciar sesión</CardTitle>
             {obj}
