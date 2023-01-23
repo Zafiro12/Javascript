@@ -4,11 +4,11 @@ import {useState} from "react";
 import axios from "axios";
 import md5 from "md5"
 import {PHPLOGIN} from "./data.js";
-import data from "bootstrap/js/src/dom/data.js";
 
 function App() {
     const [activa, setActiva] = useState(false);
     const [correcto, setCorrecto] = useState(true);
+
     function comprobar(usuario, clave) {
         axios.post(PHPLOGIN, JSON.stringify({usuario: usuario, clave: md5(clave)})).then(r => {
             if (r.data.mensaje === "aprobado") {
@@ -22,11 +22,9 @@ function App() {
     }
 
     const obj = activa ? <Menu/> : <Login correcto={correcto} f={comprobar}/>
-    return (
-        <>
+    return (<>
             {obj}
-        </>
-    )
+        </>)
 }
 
 export default App
