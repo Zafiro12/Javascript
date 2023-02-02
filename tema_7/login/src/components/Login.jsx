@@ -10,7 +10,7 @@ function Login(props) {
     }
 
     const correcto = props.correcto ? <></> : <span style={{color: "red"}}>Usuario o contraseña no válidos</span>
-    const error = props.error ? <></> : <span style={{color: "red"}}>Ha ocurrido un error</span>
+    const error = !props.error ? <></> : <span style={{color: "red"}}>Ha ocurrido un error</span>
 
     return (<div style={{width: "100vw", height:"100vh"}} className="d-flex justify-content-center align-items-center">
         <Card
