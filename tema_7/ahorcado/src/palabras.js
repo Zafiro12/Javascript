@@ -1,8 +1,17 @@
 export const PALABRAS = [
-    'casa',
-    'perro',
-    'gato',
-    'calle',
-    'ciudad',
-    'coche'
+    'Esternocleidomastoideo',
+    'Otorrinolaringologo',
+    'Idiosincrasia',
+    'Desoxirribonucleico',
+    'Paralelepipedo',
+    'Ovoviviparo',
+    'Caleidoscopio',
+    'Electroencefalografista',
+    'electroencefalografo',
+    'idiosincrasia',
+    'transustanciacion',
+    'clavicembalo',
+    'paralelepipedo',
+    'delicuescencia',
+    'desoxirribonucleico'
 ];

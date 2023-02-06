@@ -11,18 +11,21 @@ function App() {
     const [errores, setErrores] = useState(0)
     const [letras, setLetras] = useState([])
     const [palabra, setPalabra] = useState(nuevaPalabra())
+    const [palabraPrevia, setPalabraPrevia] = useState("")
     const [ganar, setGanar] = useState(false)
     const [perder, setPerder] = useState(false)
 
     useEffect(() => {
         if (palabra.split("").every((letra) => letras.includes(letra))) {
             setGanar(true)
+            setPalabraPrevia(palabra)
             setPalabra(nuevaPalabra())
             setErrores(0)
             setLetras([])
         }
         if (errores === 6) {
             setPerder(true)
+            setPalabraPrevia(palabra)
             setPalabra(nuevaPalabra())
             setErrores(0)
             setLetras([])
@@ -76,10 +79,10 @@ function App() {
                 letras.length > 0 && <p>Letras pulsadas: {letras.join(", ")}</p>
             }
             {
-                letras.length > 0 && ganar && <p>¡Has ganado!</p>
+                ganar && <p>¡Has ganado! La palabra era {palabraPrevia}</p>
             }
             {
-                letras.length > 0 && perder && <p>¡Has perdido!</p>
+                perder && <p>¡Has perdido! La palabra era {palabraPrevia}</p>
             }
         </div>
     )
