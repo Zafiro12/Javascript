@@ -73,7 +73,7 @@ function App() {
         <div className="d-flex flex-column justify-content-center align-items-center">
             <h1>Ahorcado</h1>
             <img src={"ahorcado" + errores + ".jpeg"} alt="imagen"/>
-            <Guia palabra={palabra} letra={letras}/>
+            <Guia palabra={palabra} letras={letras}/>
             <small>Pulsa una letra...</small>
             {
                 letras.length > 0 && <p>Letras pulsadas: {letras.join(", ")}</p>
