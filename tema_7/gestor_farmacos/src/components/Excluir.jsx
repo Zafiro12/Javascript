@@ -2,7 +2,7 @@ import {Button, Input, Toast, ToastBody, ToastHeader} from "reactstrap";
 import {useEffect, useState} from "react";
 
 export default function Excluir(props) {
-    const [med, setMed] = useState([]);
+    const [med, setMed] = useState(props.meds);
 
     useEffect(() => {
         setMed(props.meds);
@@ -16,7 +16,7 @@ export default function Excluir(props) {
                 </ToastHeader>
                 <ToastBody>
                     <Input type="textarea" value={med.map((value) => {
-                            return value + " ";
+                            return " " + value.codATC;
                         }
                     )} disabled></Input>
                     <br/>

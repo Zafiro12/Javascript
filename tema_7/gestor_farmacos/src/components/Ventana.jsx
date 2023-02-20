@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 export default function Ventana(props) {
     const [filtro, setFiltro] = useState("");
     const [med, setMed] = useState("");
-    const [farmacos, setFarmacos] = useState([]);
+    const [farmacos, setFarmacos] = useState(props.farmacos);
 
     useEffect(() => {
         setFarmacos(props.farmacos);
@@ -25,12 +25,13 @@ export default function Ventana(props) {
                     <Input id="filtro" type="text" onChange={(event) => setFiltro(event.target.value)}></Input>
                 </div>
                 <hr/>
-                <Input type="select" onChange={event => setMed(event.target.value)}>
+                <Input type="select" onChange={(event) => setMed(event.target.value)}>
                     {
                         farmacos.map((value) => {
                             if (value.descATC.toLowerCase().includes(filtro.toLowerCase())) {
                                 return <option key={value.codATC}
                                                value={value.codATC}>{value.codATC + " " + value.descATC}</option>;
+
                             }
                         })
                     }

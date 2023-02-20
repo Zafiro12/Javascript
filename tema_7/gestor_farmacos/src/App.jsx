@@ -16,18 +16,22 @@ function App() {
     const toggleExcluir = () => setModalExcluir(!modalExcluir);
 
     const handleChangeIncluir = (meds) => {
-        let newMeds = [...incluirMeds, meds];
-        let newFarmacos = farmacos.filter(farmaco => farmaco.codATC !== meds.codATC);
+        if (meds!=="") {
+            let newMeds = [...incluirMeds, farmacos.find(farmaco => farmaco.codATC === meds)];
+            let newFarmacos = farmacos.filter(farmaco => farmaco.codATC !== meds);
 
-        setFarmacos(newFarmacos);
-        setIncluirMeds(newMeds);
+            setFarmacos(newFarmacos);
+            setIncluirMeds(newMeds);
+        }
     }
     const handleChangeExcluir = (meds) => {
-        let newMeds = [...excluirMeds, meds];
-        let newFarmacos = farmacos.filter(farmaco => farmaco.codATC !== meds.codATC);
+        if (meds!=="") {
+            let newMeds = [...excluirMeds, farmacos.find(farmaco => farmaco.codATC === meds)];
+            let newFarmacos = farmacos.filter(farmaco => farmaco.codATC !== meds);
 
-        setFarmacos(newFarmacos);
-        setExcluirMeds(newMeds);
+            setFarmacos(newFarmacos);
+            setExcluirMeds(newMeds);
+        }
     }
 
     const clearIncluir = () => {
