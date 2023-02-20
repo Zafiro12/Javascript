@@ -1,13 +1,17 @@
 import {Button, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import {FARMACOS} from "../assets/datos.js";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function Ventana(props) {
     const [filtro, setFiltro] = useState("");
     const [med, setMed] = useState("");
+    const [farmacos, setFarmacos] = useState([]);
+
+    useEffect(() => {
+        setFarmacos(props.farmacos);
+    }, [props.farmacos]);
 
     const handleClick = () => {
-      props.f(med);
+        props.f(med);
         props.toggle();
     }
 
@@ -23,7 +27,7 @@ export default function Ventana(props) {
                 <hr/>
                 <Input type="select" onChange={event => setMed(event.target.value)}>
                     {
-                        FARMACOS.map((value) => {
+                        farmacos.map((value) => {
                             if (value.descATC.toLowerCase().includes(filtro.toLowerCase())) {
                                 return <option key={value.codATC}
                                                value={value.codATC}>{value.codATC + " " + value.descATC}</option>;
